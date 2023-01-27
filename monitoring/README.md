@@ -16,13 +16,12 @@ Prometheus is a systems and service monitoring system. It collects metrics from 
 
 ### Let's code
 
-Add the prometheus nuget package to your project `dotnet add package prometheus-net --version 7.0.0`
-
-
+Add the prometheus nuget packages to your project 
+`dotnet add package prometheus-net --version 7.0.0`
+`dotnet add package prometheus-net.AspNetCore --version 7.0.0`
 
 ## Grafana
 
 
 ## Zipkin
-
 
