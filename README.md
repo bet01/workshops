@@ -1,6 +1,6 @@
 # Workshops
 
-## Git/Github
+## Git
 
 ## Docker
 
