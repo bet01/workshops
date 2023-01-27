@@ -3,6 +3,7 @@
 - [ ] Git
 - [X] Docker
 - [X] Kafka
+- [ ] Migrations
 - [ ] CockroachDB
 - [ ] OpenShift
 - [ ] GitHub & CI
