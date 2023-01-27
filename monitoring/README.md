@@ -125,11 +125,71 @@ weather_request_duration_bucket{le="+Inf"} 3
 ```
 
 
-You have setup your first prometheus counter which can be used to graph the requests against your API.
-
-
+You have setup your first prometheus counter, gauge and histrogram which can be used to graph the requests against your API.
 
 ## Grafana
+
+Add the docker-compose.yml file to your project and paste in:
+
+```
+version: "3.9"
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    hostname: zipkin
+    container_name: zipkin
+    environment:
+      - JAVA_OPTS=-Xms1024m -Xmx1024m -XX:+ExitOnOutOfMemoryError
+    ports:
+      - '9410:9410'
+      - '9411:9411'
+    networks:
+      - public
+
+  prometheus:
+    image: bitnami/prometheus
+    container_name: prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+    networks:
+      - public
+
+  grafana:
+    image:  grafana/grafana
+    container_name: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - '3000:3000'
+    networks:
+      - public
+
+networks:
+  public:
+    driver: bridge
+```
+
+Then add another file prometheus.yml and paste in (NOTE: use the port numbers of your app, 7088 was my port locally when running WeatherAPI):
+
+```
+global:
+  scrape_interval:     5s
+  evaluation_interval: 5s
+scrape_configs:
+  - job_name: 'metrics_collection'
+    scheme: 'http'
+    static_configs:
+      - targets: [
+        'host.docker.internal:7088',
+        'localhost:7088',
+      ]
+```
+
+From the terminal in the same folder as the above file run `docker-compose up -d`
+
+Then navigate to http://localhost:9090 in your browser.
 
 
 ## Zipkin
