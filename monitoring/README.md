@@ -62,21 +62,72 @@ namespace WeatherAPI
 {
     public class AppMetrics
     {
-        private static readonly Counter WeatherRequestCount = Metrics
+        public static readonly Counter WeatherRequestCount = Metrics
             .CreateCounter("weather_request_total", "Number of weather api calls.");
+
+        public static readonly Gauge LastRequestDuration = Metrics
+            .CreateGauge("weather_last_request_duration", "Duration of last request.");
+
+        public static readonly Histogram CallDuration = Metrics
+            .CreateHistogram("weather_request_duration", "Histogram of weather api call duration.");
     }
 }
 ```
-Go to the `WeatherForecastController.cs` and add in the following to the top of the `Get()` method:
-`AppMetrics.WeatherRequestCount.Inc();`
+
+Go to the `WeatherForecastController.cs` and replace the contents of the `Get()` method with:
+```
+using (AppMetrics.CallDuration.NewTimer())
+{
+    var stopWatch = new Stopwatch();
+    stopWatch.Start();
+
+    var data = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+    {
+        Date = DateTime.Now.AddDays(index),
+        TemperatureC = Random.Shared.Next(-20, 55),
+        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+    })
+    .ToArray();
+    
+    Thread.Sleep(150);
+
+    AppMetrics.LastRequestDuration.Set(stopWatch.ElapsedMilliseconds);
+
+    return data;
+}
+```
 
 Run your app, go to the Swagger page and execute GET /WeatherFrorecast 3 times. Then navigate to the `/metrics` pages, you should find:
 
 ```
-# HELP weather_request_total Number of weather api calls.
-# TYPE weather_request_total counter
 weather_request_total 3
+
+weather_last_request_duration 150
+
+weather_request_duration_sum 0.45643240000000007
+weather_request_duration_count 3
+weather_request_duration_bucket{le="0.005"} 0
+weather_request_duration_bucket{le="0.01"} 0
+weather_request_duration_bucket{le="0.025"} 0
+weather_request_duration_bucket{le="0.05"} 0
+weather_request_duration_bucket{le="0.075"} 0
+weather_request_duration_bucket{le="0.1"} 0
+weather_request_duration_bucket{le="0.25"} 3
+weather_request_duration_bucket{le="0.5"} 3
+weather_request_duration_bucket{le="0.75"} 3
+weather_request_duration_bucket{le="1"} 3
+weather_request_duration_bucket{le="2.5"} 3
+weather_request_duration_bucket{le="5"} 3
+weather_request_duration_bucket{le="7.5"} 3
+weather_request_duration_bucket{le="10"} 3
+weather_request_duration_bucket{le="+Inf"} 3
+
 ```
+
+
+You have setup your first prometheus counter which can be used to graph the requests against your API.
+
+
 
 ## Grafana
 
