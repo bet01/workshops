@@ -70,6 +70,14 @@ namespace WeatherAPI
 Go to the `WeatherForecastController.cs` and add in the following to the top of the `Get()` method:
 `AppMetrics.WeatherRequestCount.Inc();`
 
+Run your app, go to the Swagger page and execute GET /WeatherFrorecast 3 times. Then navigate to the `/metrics` pages, you should find:
+
+```
+# HELP weather_request_total Number of weather api calls.
+# TYPE weather_request_total counter
+weather_request_total 3
+```
+
 ## Grafana
 
 
