@@ -11,7 +11,7 @@
 
 Kafka is an Event Streaming platform which allows the sending and receiving of messages between applications in a decoupled manner with a very high throughput. If you know Rabbit MQ this won’t be a foreign concept to you. What makes Kafka more attractive is throughput and persistence. You can set Kafka to keep messages for a certain time, defaulting to two weeks, so if an app goes down it can continue from where it left off.
 
-### Throughput
+## Throughput
 
 |                         | Kafka                 | Pulsar                | RabbitMQ (Mirrored)           |
 |-------------------------|-----------------------|-----------------------|-------------------------------|
@@ -19,7 +19,8 @@ Kafka is an Event Streaming platform which allows the sending and receiving of m
 | p99 Latency(ms)         | 5 ms (200 MB/s load)  | 25 ms (200 MB/s load) | 1 ms* (reduced 30 MB/s load)  |
 
 *RabbitMQ latencies degrade significantly at throughputs higher than the 30 MB/s. 
-Better than calling an API?
+
+## Better than calling an API?
 
 If your call doesn’t need to be syncrhonous (don’t need to wait for an answer) then there are a number of benefits to using Kafka.
 
