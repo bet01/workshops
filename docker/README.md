@@ -19,8 +19,8 @@ You’ve been given a project to work on, this project requires Microsoft SQL Se
 
 1. Install docker
 2. Run the commands: list images
- a. docker pull mcr.microsoft.com/mssql/server:2022-latest
- b. docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+- docker pull mcr.microsoft.com/mssql/server:2022-latest
+- docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
 
 NOTE: you may need to use single quotes if bash interprets the strings and complains about the exclamation mark
 
