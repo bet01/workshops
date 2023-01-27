@@ -2,17 +2,12 @@ NB: Docker doesn’t work too well in Windows but it can run
 
 ## Prerequisites
 
-    A Laptop/PC
-
-    Docker installed (this may require enabling virtualization on your PC)
-
-    Docker hub account (free)
-
-    Visual Studio/Visual Studio Code
-
-    Dotnet 6
-
-    git
+- A Laptop/PC
+- Docker installed (this may require enabling virtualization on your PC)
+- Docker hub account (free)
+- Visual Studio/Visual Studio Code
+- Dotnet 6
+- git
 
 ## What is Docker?
 
