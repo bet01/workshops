@@ -19,14 +19,14 @@ You’ve been given a project to work on, this project requires Microsoft SQL Se
 
 1. Install docker
 2. Run the commands: list images
- - docker pull mcr.microsoft.com/mssql/server:2022-latest
- - docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+ - `docker pull mcr.microsoft.com/mssql/server:2022-latest`
+ - `docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest`
 
 NOTE: you may need to use single quotes if bash interprets the strings and complains about the exclamation mark
 
-Docker pull downloads the image you want to use, this can then be re-used each time you run and not have to download it again until it is updated.
+`docker pull` downloads the image you want to use, this can then be re-used each time you run and not have to download it again until it is updated.
 
-Docker run will run the container and allow you to use the app. -e is where environment variables are passed in, -p maps the port(s), -d run container in background, and the last part is the name of the image you are running.
+`docker run` will run the container and allow you to use the app. -e is where environment variables are passed in, -p maps the port(s), -d run container in background, and the last part is the name of the image you are running.
 
 You may now connect to the MS SQL using the username sa and password yourStrong(!)Password.
 
@@ -35,7 +35,8 @@ You may now connect to the MS SQL using the username sa and password yourStrong(
 Let’s containerize a boilerplate dotnet 6 web api. Make a working folder called WeatherAPI and in this folder run dotnet new webapi 
 
 Open the code in visual studio/visual studio code and in the root folder create an empty text file called Dockerfile with no extension. In this file paste:
-# The base image we will be using, this is an image based on Alpine Linux and has aspnet 6 installed
+
+`# The base image we will be using, this is an image based on Alpine Linux and has aspnet 6 installed
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS base
 WORKDIR /app
 # Lets docker know the app uses port 8080 which will need to be exposed
@@ -62,24 +63,23 @@ RUN dotnet publish "WeatherAPI.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "WeatherAPI.dll"]
-
+ENTRYPOINT ["dotnet", "WeatherAPI.dll"]`
  
 
 From your command prompt/terminal run the following:
 
 ### Build image
-docker build -t nicholascookbet/weatherapi . 
+`docker build -t nicholascookbet/weatherapi .`
 
 -t tags the image, in this case we tag the repository we want to use, replace the part before the / with your own docker hub id.
 
 ### List images
-docker image ls
+`docker image ls`
 
 You should see your created image in this list
 
 ### Run your image
-docker run -p 8080:8080 nicholascookbet/weatherapi
+`docker run -p 8080:8080 nicholascookbet/weatherapi`
 
 In your browser open: http://localhost:8080/weatherforecast
 
@@ -94,7 +94,8 @@ Docker Compose is a great tool for development. Let’s say you are developing a
 Docker Compose allows you to create a file, which you can safely store in your source code repo, which defines what you want. So all you have to do before starting development is run docker-compose up
 
 Create a file called docker-compose.yml and past the following into it:
-version: "3.9"
+
+`version: "3.9"
 services:
   zookeeper:
     image: 'bitnami/zookeeper:3.7'
@@ -164,8 +165,8 @@ services:
 
 networks:
   public:
-    driver: bridge
+    driver: bridge`
 
  
 
-Run docker-compose up -d in the same folder as the file and watch the containers come to life. Run docker ps to see the running containers. docker-compse down will stop them all.
+Run `docker-compose up -d` in the same folder as the file and watch the containers come to life. Run docker ps to see the running containers. docker-compse down will stop them all.
