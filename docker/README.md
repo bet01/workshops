@@ -92,7 +92,7 @@ That's it!
 
 Docker Compose is a great tool for development. Let’s say you are developing a project which requires MS SQL, CockroachDB & Kafka. Every day when you start development you will need to run docker run for these 3 images, and remember the settings needed. This is time consuming and painful, this is where Docker Compose comes in!
 
-Docker Compose allows you to create a file, which you can safely store in your source code repo, which defines what you want. So all you have to do before starting development is run docker-compose up
+Docker Compose allows you to create a file, which you can safely store in your source code repo, which defines what you want. So all you have to do before starting development is run `docker-compose up -d`
 
 Create a file called docker-compose.yml and past the following into it:
 
