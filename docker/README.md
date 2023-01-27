@@ -36,7 +36,8 @@ Let’s containerize a boilerplate dotnet 6 web api. Make a working folder calle
 
 Open the code in visual studio/visual studio code and in the root folder create an empty text file called Dockerfile with no extension. In this file paste:
 
-`# The base image we will be using, this is an image based on Alpine Linux and has aspnet 6 installed
+```
+# The base image we will be using, this is an image based on Alpine Linux and has aspnet 6 installed
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS base
 WORKDIR /app
 # Lets docker know the app uses port 8080 which will need to be exposed
@@ -63,8 +64,8 @@ RUN dotnet publish "WeatherAPI.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "WeatherAPI.dll"]`
- 
+ENTRYPOINT ["dotnet", "WeatherAPI.dll"]
+``` 
 
 From your command prompt/terminal run the following:
 
@@ -95,7 +96,8 @@ Docker Compose allows you to create a file, which you can safely store in your s
 
 Create a file called docker-compose.yml and past the following into it:
 
-`version: "3.9"
+```
+version: "3.9"
 services:
   zookeeper:
     image: 'bitnami/zookeeper:3.7'
@@ -165,8 +167,7 @@ services:
 
 networks:
   public:
-    driver: bridge`
-
- 
+    driver: bridge
+``` 
 
 Run `docker-compose up -d` in the same folder as the file and watch the containers come to life. Run docker ps to see the running containers. docker-compse down will stop them all.
