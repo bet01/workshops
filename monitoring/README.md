@@ -53,6 +53,23 @@ process_start_time_seconds 1674824115.91
 prometheus_net_metric_instances{metric_type="gauge"} 21
 ```
 
+Next add a AppMetrics.cs file and paste in the following:
+
+```
+using Prometheus;
+
+namespace WeatherAPI
+{
+    public class AppMetrics
+    {
+        private static readonly Counter WeatherRequestCount = Metrics
+            .CreateCounter("weather_request_total", "Number of weather api calls.");
+    }
+}
+```
+Go to the `WeatherForecastController.cs` and add in the following to the top of the `Get()` method:
+`AppMetrics.WeatherRequestCount.Inc();`
+
 ## Grafana
 
 
