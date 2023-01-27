@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Prometheus;
 
 namespace WeatherAPI.Controllers;
 
@@ -23,12 +25,24 @@ public class WeatherForecastController : ControllerBase
     {
         AppMetrics.WeatherRequestCount.Inc();
 
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        using (AppMetrics.CallDuration.NewTimer())
         {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            var data = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            })
+            .ToArray();
+
+            Thread.Sleep(150);
+
+            AppMetrics.LastRequestDuration.Set(stopWatch.ElapsedMilliseconds);
+
+            return data;
+        }
     }
 }
