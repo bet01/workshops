@@ -22,6 +22,23 @@ Add the prometheus nuget packages to your project
 
 `dotnet add package prometheus-net.AspNetCore --version 7.0.0`
 
+Add the following to your Program.cs file just before `app.Run();`:
+
+```
+app.UseRouting();
+
+// Capture metrics about all received HTTP requests.
+app.UseHttpMetrics();
+
+app.UseEndpoints(endpoints =>
+{
+    // Enable the /metrics page to export Prometheus metrics.
+    // Open http://localhost:5099/metrics to see the metrics.
+
+    endpoints.MapMetrics();
+});
+```
+
 ## Grafana
 
 
