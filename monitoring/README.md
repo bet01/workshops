@@ -179,7 +179,7 @@ global:
   evaluation_interval: 5s
 scrape_configs:
   - job_name: 'metrics_collection'
-    scheme: 'http'
+    scheme: 'https'
     static_configs:
       - targets: [
         'host.docker.internal:7088',
