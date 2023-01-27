@@ -10,6 +10,14 @@ Create a simple boilerplate dotnet API with `dotnet new webapi --name WeatherAPI
 
 ## Prometheus
 
+### What is it?
+
+Prometheus is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts when specified conditions are observed.
+
+### Let's code
+
+Add the prometheus nuget package to your project `dotnet add package prometheus-net --version 7.0.0`
+
 
 
 ## Grafana
