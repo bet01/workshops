@@ -155,7 +155,7 @@ services:
     network_mode: host
 ```
 
-Then add another file prometheus.yml and paste in (NOTE: use the port numbers of your app, 7088 was my port locally when running WeatherAPI):
+Then add another file prometheus.yml and paste in (NOTE: use the port numbers of your app, 5076 was my port locally when running WeatherAPI):
 
 ```
 global:
