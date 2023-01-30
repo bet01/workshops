@@ -136,17 +136,6 @@ Add the docker-compose.yml file to your project and paste in:
 ```
 version: "3.9"
 services:
-  zipkin:
-    image: openzipkin/zipkin
-    hostname: zipkin
-    container_name: zipkin
-    environment:
-      - JAVA_OPTS=-Xms1024m -Xmx1024m -XX:+ExitOnOutOfMemoryError
-    ports:
-      - '9410:9410'
-      - '9411:9411'
-    network_mode: host
-
   prometheus:
     image: bitnami/prometheus
     container_name: prometheus
