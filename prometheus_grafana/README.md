@@ -145,8 +145,7 @@ services:
     ports:
       - '9410:9410'
       - '9411:9411'
-    networks:
-      - public
+    network_mode: host
 
   prometheus:
     image: bitnami/prometheus
@@ -155,22 +154,16 @@ services:
       - '9090:9090'
     volumes:
       - ./prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
-    networks:
-      - public
+    network_mode: host
 
   grafana:
-    image:  grafana/grafana
+    image: grafana/grafana
     container_name: grafana
     depends_on:
       - prometheus
     ports:
       - '3000:3000'
-    networks:
-      - public
-
-networks:
-  public:
-    driver: bridge
+    network_mode: host
 ```
 
 Then add another file prometheus.yml and paste in (NOTE: use the port numbers of your app, 7088 was my port locally when running WeatherAPI):
@@ -181,11 +174,10 @@ global:
   evaluation_interval: 5s
 scrape_configs:
   - job_name: 'metrics_collection'
-    scheme: 'https'
+    scheme: 'http'
     static_configs:
       - targets: [
-        'host.docker.internal:7088',
-        'localhost:7088',
+        'localhost:5076',
       ]
 ```
 
