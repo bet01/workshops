@@ -39,6 +39,8 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
+and remove `app.UseHttpsRedirection();`
+
 Run your app and navigate to `/metrics` full url should be similar to `https://localhost:7088/metrics`, you should see (truncated):
 
 ```
@@ -125,12 +127,74 @@ weather_request_duration_bucket{le="+Inf"} 3
 ```
 
 
-You have setup your first prometheus counter which can be used to graph the requests against your API.
-
-
+You have setup your first prometheus counter, gauge and histrogram which can be used to graph the requests against your API.
 
 ## Grafana
 
+Add the docker-compose.yml file to your project and paste in:
 
-## Zipkin
+```
+version: "3.9"
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    hostname: zipkin
+    container_name: zipkin
+    environment:
+      - JAVA_OPTS=-Xms1024m -Xmx1024m -XX:+ExitOnOutOfMemoryError
+    ports:
+      - '9410:9410'
+      - '9411:9411'
+    networks:
+      - public
 
+  prometheus:
+    image: bitnami/prometheus
+    container_name: prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+    networks:
+      - public
+
+  grafana:
+    image:  grafana/grafana
+    container_name: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - '3000:3000'
+    networks:
+      - public
+
+networks:
+  public:
+    driver: bridge
+```
+
+Then add another file prometheus.yml and paste in (NOTE: use the port numbers of your app, 7088 was my port locally when running WeatherAPI):
+
+```
+global:
+  scrape_interval:     5s
+  evaluation_interval: 5s
+scrape_configs:
+  - job_name: 'metrics_collection'
+    scheme: 'https'
+    static_configs:
+      - targets: [
+        'host.docker.internal:7088',
+        'localhost:7088',
+      ]
+```
+
+From the terminal in the same folder as the above file run `docker-compose up -d`
+
+Then navigate to http://localhost:9090 in your browser and run the query `weather_request_total` you will then see the value scraped by Prometheus from your app.
+
+Next navigate to Grafana at http://localhost:3000 and login with admin/admin, skip changing password.
+
+Hover over the cog icon for settings, click "Data sources", click "Add data source", select Prometheus and enter http://localhost:9090 into URL, the click "Save & test"
+
+Next hover over the Dashboards icon (four squares), click "New dashboard". Click "Add new panel" switch from "Builder" to "Code" mode and paste in `sum(rate(weather_request_total[1m]) * 60 )` set time range to last 5 minutes, click apply. You can set an auto refresh from the refresh icon, set to 5s. Now execute your API from swagger and see how Grafana shows you the request rate.
