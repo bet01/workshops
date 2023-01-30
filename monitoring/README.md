@@ -193,6 +193,9 @@ From the terminal in the same folder as the above file run `docker-compose up -d
 
 Then navigate to http://localhost:9090 in your browser and run the query `weather_request_total` you will then see the value scraped by Prometheus from your app.
 
+Next navigate to Grafana at http://localhost:3000 and login with admin/admin, skip changing password.
+
+
 
 ## Zipkin
 
