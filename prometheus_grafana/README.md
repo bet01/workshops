@@ -131,6 +131,11 @@ You have setup your first prometheus counter, gauge and histrogram which can be 
 
 ## Grafana
 
+### What is it?
+Grafana provides charts, graphs, and alerts when connected to supported data sources. In this case Prometheus will be our data source.
+
+### Let's try it out
+
 Add the docker-compose.yml file to your project and paste in:
 
 ```
