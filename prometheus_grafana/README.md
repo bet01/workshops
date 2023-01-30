@@ -1,4 +1,4 @@
-# Monitoring Workshop
+# Prometheus & Grafana Workshop
 
 ## Why Monitor?
 
