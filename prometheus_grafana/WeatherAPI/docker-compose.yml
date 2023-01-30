@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    hostname: zipkin
+    container_name: zipkin
+    environment:
+      - JAVA_OPTS=-Xms1024m -Xmx1024m -XX:+ExitOnOutOfMemoryError
+    ports:
+      - '9410:9410'
+      - '9411:9411'
+    network_mode: host
+
+  prometheus:
+    image: bitnami/prometheus
+    container_name: prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+    network_mode: host
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - '3000:3000'
+    network_mode: host
