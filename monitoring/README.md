@@ -39,6 +39,8 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
+and remove `app.UseHttpsRedirection();`
+
 Run your app and navigate to `/metrics` full url should be similar to `https://localhost:7088/metrics`, you should see (truncated):
 
 ```
