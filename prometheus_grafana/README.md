@@ -71,7 +71,11 @@ namespace WeatherAPI
             .CreateGauge("weather_last_request_duration", "Duration of last request.");
 
         public static readonly Histogram CallDuration = Metrics
-            .CreateHistogram("weather_request_duration", "Histogram of weather api call duration.");
+            .CreateHistogram("weather_request_duration", "Histogram of weather api call duration.",
+            new HistogramConfiguration
+            {
+                Buckets = new double[] { 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 }
+            });
     }
 }
 ```
@@ -194,7 +198,7 @@ Add a New Panel, on the top right change the Visualization from "Time series" to
 
 #### Histograms as Heatmaps
 
-Add a New Panel, on the top right change the Visualization from "Time series" to "Heatmap" and paste in `weather_request_duration_bucket` into the PromQL Query. Click "Apply".
+Add a New Panel, on the top right change the Visualization from "Time series" to "Heatmap" and paste in `sum by (le) (increase(weather_request_duration_bucket[1m]))` into the PromQL Query. Click "Apply".
 
 
 
