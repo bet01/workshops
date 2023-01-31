@@ -192,7 +192,9 @@ Next hover over the Dashboards icon (four squares), click "New dashboard". Click
 
 Add a New Panel, on the top right change the Visualization from "Time series" to "Gauge" and paste in `weather_last_request_duration` into the PromQL Query. Click "Apply".
 
-#### Histograms
+#### Histograms as Heatmaps
+
+Add a New Panel, on the top right change the Visualization from "Time series" to "Heatmap" and paste in `weather_request_duration_bucket` into the PromQL Query. Click "Apply".
 
 
 
