@@ -1,14 +1,3 @@
-NB: Docker doesn’t work too well in Windows but it can run
-
-## Prerequisites
-
-- A Laptop/PC
-- Docker installed (this may require enabling virtualization on your PC, https://docs.docker.com/desktop/install/windows-install/, https://www.youtube.com/watch?v=AAWNQ2wDVAg)
-- Docker hub account (free)
-- Visual Studio/Visual Studio Code
-- Dotnet 6
-- git
-
 ## What is Docker?
 
 Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. Docker provides the ability to package and run an application in a loosely isolated environment called a container.
