@@ -183,4 +183,14 @@ Next navigate to Grafana at http://localhost:3000 and login with admin/admin, sk
 
 Hover over the cog icon for settings, click "Data sources", click "Add data source", select Prometheus and enter http://localhost:9090 into URL, the click "Save & test"
 
+#### Counters and Graphs
+
 Next hover over the Dashboards icon (four squares), click "New dashboard". Click "Add new panel" switch from "Builder" to "Code" mode and paste in `sum(rate(weather_request_total[1m]) * 60 )` set time range to last 5 minutes, click apply. You can set an auto refresh from the refresh icon, set to 5s. Now execute your API from swagger and see how Grafana shows you the request rate.
+
+#### Gauges
+
+
+#### Histograms
+
+
+
