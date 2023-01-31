@@ -91,7 +91,8 @@ using (AppMetrics.CallDuration.NewTimer())
     })
     .ToArray();
     
-    Thread.Sleep(150);
+    var random = new Random();
+    Thread.Sleep(random.Next(100, 1000));
 
     AppMetrics.LastRequestDuration.Set(stopWatch.ElapsedMilliseconds);
 
@@ -189,6 +190,7 @@ Next hover over the Dashboards icon (four squares), click "New dashboard". Click
 
 #### Gauges
 
+Add a New Panel, on the top right change the Visualization from "Time series" to "Gauge" and paste in `weather_last_request_duration` into the PromQL Query. Click "Apply".
 
 #### Histograms
 
