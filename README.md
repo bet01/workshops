@@ -4,8 +4,7 @@
 
 - A Laptop/PC
 - Docker installed
-  - This may require enabling virtualization on your PC 
-  - https://www.youtube.com/watch?v=AAWNQ2wDVAg)
+  - https://www.youtube.com/watch?v=AAWNQ2wDVAg
 - Visual Studio/Visual Studio Code
 - Dotnet 6
 - git
