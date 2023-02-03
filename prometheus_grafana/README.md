@@ -82,6 +82,8 @@ namespace WeatherAPI
 
 Go to the `WeatherForecastController.cs` and replace the contents of the `Get()` method with:
 ```
+AppMetrics.WeatherRequestCount.Inc();
+
 using (AppMetrics.CallDuration.NewTimer())
 {
     var stopWatch = new Stopwatch();
