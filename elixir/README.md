@@ -5,11 +5,14 @@
 There are two main reasons we will focus on. 
 
 ### Reason 1
-The first reason has nothing to do with Elixir, but rather the Erlang Virtual Machine on which it runs.
-
+The first reason has nothing to do with the Elixir language, but rather the Erlang Virtual Machine on which it runs. The Erlang Virtual Machine is built from the ground up to handle distributed and concurrent processing. It also makes use of lightweight Erlang processes (not to be confused with Operating System processes). It also follows the Actor Model, where the processes can be considered the actors. https://en.wikipedia.org/wiki/Actor_model
 
 ### Reason 2
+Elixir is a modern functional language. It is concise, implements pattern matching at a function level, and generally is a great language to read once you get the hang of it. 
 
+### Should everything be in Elixir?
+
+Not necessarily. If it fits what you are doing and you need distributed highly concurrent code, then it will be great. Otherwise if you are already proficient in C# and C# will do the job well, then there's no need to switch. Both languages/technologies have their place.
 
 ## Tools
 
@@ -37,16 +40,31 @@ public class Program
 		switch (shapeType)
 		{
 			case "triangle":
-				Console.WriteLine("I'm a Triangle");
+				Triangle();
 				break;
 			case "rectangle":
-				Console.WriteLine("I'm a Rectangle");
+				 Rectangle();
 				break;
 			case "square":
-				Console.WriteLine("I'm a Square");
+				Square();
 				break;
 			
 		}
+	}
+	
+	public static void Triangle()
+	{
+		Console.WriteLine("I'm a Triangle");
+	}
+	
+	public static void Rectangle()
+	{
+		Console.WriteLine("I'm a Rectangle");
+	}
+	
+	public static void Square()
+	{
+		Console.WriteLine("I'm a Square");
 	}
 }
 ```
@@ -71,3 +89,4 @@ end
 Test.shape(:square)
 ```
 
+From these examples you can see how Elixir will automatically match the parameter to the correct function and run that function. With C# you need a handler method to direct the call to the correct method.
