@@ -23,3 +23,4 @@ NOTE: Please install all prerequisites before arriving at the workshop
 - [X] Prometheus & Grafana
 - [ ] Zipkin
 - [ ] Kibana (logs in OpenShift)
+- [ ] Server Side Caching
