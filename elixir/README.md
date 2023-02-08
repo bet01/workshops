@@ -22,7 +22,7 @@ C# online interactive:      https://dotnetfiddle.net/
 
 ## Let's compare
 
-Pattern matching with function parameters
+### Pattern matching with function parameters
 
 C#
 ```
@@ -90,3 +90,73 @@ Test.shape(:square)
 ```
 
 From these examples you can see how Elixir will automatically match the parameter to the correct function and run that function. With C# you need a handler method to direct the call to the correct method.
+
+### Switch/Case Statements
+
+C# in recent years has brought in some functional elements, such as pattern matching with switch statements
+
+C#
+```
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		ProcessPerson(new Person
+					  {
+						  FirstName = "Bob",
+						  LastName = "Smith",
+						  Age = 28
+					  });
+		
+		ProcessPerson(new Person
+					  {
+						  FirstName = "John",
+						  LastName = "Smith",
+						  Age = 28
+					  });
+		
+		ProcessPerson(new Person
+					  {
+						  FirstName = "John",
+						  LastName = "Smith",
+						  Age = 31
+					  });
+		
+		ProcessPerson(new Person
+					  {
+						  FirstName = "John",
+						  LastName = "Smith",
+						  Age = 47
+					  });
+	}
+	
+	public class Person
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public int Age { get; set; }		
+	}
+	
+	public static void ProcessPerson(Person person)
+	{
+		string message = person switch
+		{
+			{ FirstName: "Bob" } => "Hi Bob! Long time!",
+			{ Age: int age } when age > 40 => $"You are older than 40, you are {age}",
+			{ Age: > 30 } => "You are older than 30",			
+			{ FirstName: string firstName }  => $"Hi {firstName}"
+		};
+		
+		Console.WriteLine(message);
+	}
+}
+```
+
+Elixir
+```
+
+```
+
+
