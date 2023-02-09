@@ -93,7 +93,7 @@ From these examples you can see how Elixir will automatically match the paramete
 
 ### Switch/Case Statements
 
-C# in recent years has brought in some functional elements, such as pattern matching with switch statements
+In recent years C# has brought in some functional elements, such as pattern matching with switch statements.
 
 C#
 ```
