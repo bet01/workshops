@@ -156,7 +156,47 @@ public class Program
 
 *Elixir*
 ```
+defmodule ProcessPerson do
 
+  def process(person) do
+
+      message = case person do
+		
+  			%{ first_name: "Bob" } -> "Hi Bob! Long time!"
+  			%{ age: age } when age > 40 -> "You are older than 40, you are #{age}"
+  			%{ age: age } when age > 30 -> "You are older than 30"
+  			%{ first_name: first_name } -> "Hi #{first_name}"
+	 end	
+
+  IO.puts(message)
+
+  end
+
+end
+
+ProcessPerson.process(%{						
+  first_name: "Bob",
+  last_name: "Smith",
+  age: 28
+})
+		
+ProcessPerson.process(%{						  
+  first_name: "John",
+  last_name: "Smith",
+  age: 28
+})
+		
+ProcessPerson.process(%{						  
+  first_name: "John",
+  last_name: "Smith",
+  age: 31
+})
+		
+ProcessPerson.process(%{						  
+  first_name: "John",
+  last_name: "Smith",
+  age: 47
+})
 ```
 
 
