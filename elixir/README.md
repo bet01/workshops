@@ -257,4 +257,4 @@ ProcessPerson.process(%{
 })
 ```
 
-In Elxir, and many functional languages, we have the pipe operator `|>` which takes the result of the previous function and passes it to the next function as it's first parameter.
+In Elxir, and many functional languages, we have the pipe operator `|>` which takes the result of the previous function and passes it to the next function as it's first parameter. This gives us a clear and easy to read call chain.
