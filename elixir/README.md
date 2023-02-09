@@ -160,15 +160,14 @@ defmodule ProcessPerson do
 
   def process(person) do
 
-      message = case person do
-		
-  			%{ first_name: "Bob" } -> "Hi Bob! Long time!"
-  			%{ age: age } when age > 40 -> "You are older than 40, you are #{age}"
-  			%{ age: age } when age > 30 -> "You are older than 30"
-  			%{ first_name: first_name } -> "Hi #{first_name}"
-	 end	
+    message = case person do
+      %{ first_name: "Bob" } -> "Hi Bob! Long time!"
+      %{ age: age } when age > 40 -> "You are older than 40, you are #{age}"
+      %{ age: age } when age > 30 -> "You are older than 30"
+      %{ first_name: first_name } -> "Hi #{first_name}"
+    end	
 
-  IO.puts(message)
+    IO.puts(message)
 
   end
 
