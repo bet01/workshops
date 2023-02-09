@@ -198,4 +198,63 @@ ProcessPerson.process(%{
 })
 ```
 
+### Piping
 
+In C# you may have come across this, notice how 3 method calls are wrapped around the person object:
+```
+using System;
+using System.Text.Json;
+					
+public class Program
+{
+	public static void Main()
+	{
+		var person = new Person
+		{
+			FirstName = "Bob",
+			LastName = "Smith",
+			Age = 28
+		};
+		
+		Console.WriteLine(JsonSerializer.Serialize(AgePerson(person)));		
+	}
+	
+	public class Person
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public int Age { get; set; }		
+	}
+	
+	public static Person AgePerson(Person person)
+	{
+		person.Age += 1;
+		return person;
+	}
+}
+```
+
+*Elixir*
+```
+defmodule ProcessPerson do
+
+  def process(person) do
+    person
+    |> age_person()
+    |> IO.inspect()
+  end
+  
+  defp age_person(person) do
+    Map.update!(person, :age, &(&1 + 1))
+  end
+
+end
+
+ProcessPerson.process(%{						
+  first_name: "Bob",
+  last_name: "Smith",
+  age: 28
+})
+```
+
+In Elxir, and many functional languages, we have the pipe operator `|>` which takes the result of the previous function and passes it to the next function as it's first parameter.
