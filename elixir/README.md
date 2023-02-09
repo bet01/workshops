@@ -24,7 +24,7 @@ C# online interactive:      https://dotnetfiddle.net/
 
 ### Pattern matching with function parameters
 
-C#
+**C#**
 ```
 using System;
 					
@@ -69,7 +69,7 @@ public class Program
 }
 ```
 
-Elixir
+**Elixir**
 ```
 defmodule Test do
    
@@ -95,7 +95,7 @@ From these examples you can see how Elixir will automatically match the paramete
 
 In recent years C# has brought in some functional elements, such as pattern matching with switch statements.
 
-C#
+**C#**
 ```
 using System;
 					
@@ -154,7 +154,7 @@ public class Program
 }
 ```
 
-Elixir
+**Elixir**
 ```
 
 ```
