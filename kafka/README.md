@@ -94,7 +94,7 @@ Partitions also keep messages in order within that partition. So if you need all
 
 ## Consumer Groups
 
-If you have 10 consumers in the same consumer group they will share the load of processing the messages. Messages coming in will be divided between the consumers in the consumer group and no consumer should get the same message another consumer in the group got. If you want to process the same messages for another purpose you would then create a new consumer group. 
+If you have 10 consumers in the same consumer group they will share the load of processing the messages. Messages coming in will be divided between the consumers in the consumer group and no consumer will get the same message another consumer in the group got. If you want to process the same messages for another purpose you would then create a new consumer group. 
 
 For example lets say we are consuming the bet topic, you have one set of consumers that will insert the bet into a bet database table, we create a group called bet_storage_group. Then lets say you have another set of consumers that will insert into the client transaction table in a database, we can create a group called client_transaction_storage_group. This way both groups will receive the same messages.
 
