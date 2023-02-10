@@ -21,7 +21,7 @@ You may now connect to the MS SQL using the username sa and password yourStrong(
 
 ## What about creating our own?
 
-Let’s containerize a boilerplate dotnet 6 web api. Make a working folder called `WeatherAPI` and in this folder run dotnet new webapi 
+Let’s containerize a boilerplate dotnet 6 web api. Make a working folder called "WeatherAPI" and in this folder run `dotnet new webapi` 
 
 Open the code in visual studio/visual studio code and in the root folder create an empty text file called Dockerfile with no extension. In this file paste:
 
