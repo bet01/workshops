@@ -13,9 +13,9 @@ You’ve been given a project to work on, this project requires Microsoft SQL Se
 
 NOTE: you may need to use single quotes if bash interprets the strings and complains about the exclamation mark
 
-`docker pull` downloads the image you want to use, this can then be re-used each time you run and not have to download it again until it is updated.
+"docker pull" downloads the image you want to use, this can then be re-used each time you run and not have to download it again until it is updated.
 
-`docker run` will run the container and allow you to use the app. -e is where environment variables are passed in, -p maps the port(s), -d run container in background, and the last part is the name of the image you are running.
+"docker run" will run the container and allow you to use the app. -e is where environment variables are passed in, -p maps the port(s), -d run container in background, and the last part is the name of the image you are running.
 
 You may now connect to the MS SQL using the username sa and password yourStrong(!)Password.
 
