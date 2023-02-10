@@ -15,12 +15,13 @@ NOTE: Please install all prerequisites before arriving at the workshop
 
 - [ ] Git
 - [X] Docker
+- [ ] Podman
+- [ ] OpenShift
+- [X] Prometheus & Grafana
 - [X] Kafka
 - [ ] Migrations
 - [ ] CockroachDB
-- [ ] OpenShift
 - [ ] GitHub & CI
-- [X] Prometheus & Grafana
 - [ ] Zipkin
 - [ ] Kibana (logs in OpenShift)
 - [ ] Server Side Caching
