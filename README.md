@@ -24,3 +24,4 @@ NOTE: Please install all prerequisites before arriving at the workshop
 - [ ] Zipkin
 - [ ] Kibana (logs in OpenShift)
 - [ ] Server Side Caching
+- [ ] Elixir
