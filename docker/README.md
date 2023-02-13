@@ -17,7 +17,7 @@ NOTE: you may need to use single quotes if bash interprets the strings and compl
 
 "docker run" will run the container and allow you to use the app. -e is where environment variables are passed in, -p maps the port(s), -d run container in background, and the last part is the name of the image you are running.
 
-You may now connect to the MS SQL using the username sa and password yourStrong(!)Password.
+You may now connect to the localhost MS SQL using the username sa and password yourStrong(!)Password.
 
 ## What about creating our own?
 
