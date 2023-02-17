@@ -160,3 +160,7 @@ networks:
 ``` 
 
 Run `docker-compose up -d` in the same folder as the file and watch the containers come to life. Run docker ps to see the running containers. docker-compse down will stop them all.
+
+## What is next?
+
+Docker gives you the power to run containers locally and to create your own. The next step is Kubernetes (OpenShift is RedHat's flavour). Kubernetes is a container orchestrator which allows you to control and run containers across multiple servers allowing easy scaling up, scaling out or both. 
