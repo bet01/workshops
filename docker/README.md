@@ -67,7 +67,7 @@ From your command prompt/terminal run the following:
 ### Build image
 `docker build -t nicholascookbet/weatherapi .`
 
--t tags the image, in this case we tag the repository we want to use, replace the part before the / with your own docker hub id.
+"-t" tags the image, in this case we tag the repository we want to use, replace the part before the / with your own docker hub id.
 
 ### List images
 `docker image ls`
