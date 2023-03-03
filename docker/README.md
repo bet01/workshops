@@ -29,7 +29,7 @@ You may now connect to the `localhost` MS SQL using the username `sa` and passwo
 
 Let’s containerize a boilerplate dotnet 6 web api. Make a working folder called "WeatherAPI" (case sensitive) and in this folder run `dotnet new webapi` 
 
-Open the code in visual studio/visual studio code and in the root folder create an empty text file called Dockerfile with no extension. In this file paste:
+Open the code in visual studio/visual studio code and in the root folder create an empty text file called Dockerfile (case sensitive) with no extension. In this file paste:
 
 ```
 # The base image we will be using, this is an image based on Alpine Linux and has aspnet 6 installed
