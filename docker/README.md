@@ -4,7 +4,7 @@ Docker enables you to separate your applications from your infrastructure so you
 
 ### How does that help us?
 
-1. No need for servers in your development. We've all had it where we need MS SQL or some other dependency which can take days to resolve, from IT provisioning a new server, acquiring login details, fixing the development database which another developer has been playing with, etc. With Docker you can run as many MS SQLs as you want on your local machine, and as many other dependencies as your RAM wll allow. No need for servers and all the admin that goes with it and the pain of clashing with another developers changes.
+1. No need for servers in your development. We've all had it where we need MS SQL or some other dependency which can take days to resolve, from IT provisioning a new server, acquiring login details, fixing the development database which another developer has been playing with, etc. With Docker you can run as many MS SQLs as you want on your local machine, and as many other dependencies as your RAM wll allow. No need for servers and all the admin that goes with it and the pain of clashing with another developers changes. On top of this, the containers don't make a mess of your PC with registry changes and files all over the place. Once you're done, you stop them, and it's like they were never there.
 
 2. Package your application for easy deployment. Docker allows packaging your own applications as containers. Once containerised it can run on a Docker Server or in Kubernetes (OpenShift) for easy deployment and scaling.
 
