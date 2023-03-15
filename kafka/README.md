@@ -10,6 +10,7 @@ Kafka is an Event Streaming platform which allows the sending and receiving of m
 
 In the above image the throughputs are Kafka 200K / s, Pulsar 200K / s, RabbitMQ 30K / s
 
+
 |                         | Kafka                 | Pulsar                | RabbitMQ (Mirrored)           |
 |-------------------------|-----------------------|-----------------------|-------------------------------|
 | Peak Throughput (MB/s)  | 605 MB/s              | 305 MB/s              | 38 MB/s                       |
