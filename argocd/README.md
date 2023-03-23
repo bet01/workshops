@@ -34,3 +34,7 @@
 **5. Declarative Setup**
 
 - [5.1. Using Kubernetes Manifest](./5.%20Declarative%20Setup/5.1.%20Using%20Kubernetes%20Manifest.md)
+
+- [5.2. App-of-Apps Pattern](./5.%20Declarative%20Setup/5.2.%20App-of-Apps%20Pattern.md)
+
+- [5.3. Deploying App-of-Apps](./5.%20Declarative%20Setup/5.3.%20Deploying%20App-of-Apps.md)
