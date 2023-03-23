@@ -13,9 +13,9 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: https://github.com/codefresh-contrib/gitops-certification-examples.git
+    repoURL: https://github.com/bet01/workshops.git
     targetRevision: HEAD
-    path: ./declarative/manifests
+    path: ./argocd/declarative/manifests
    
   # Destination cluster and namespace to deploy the application
   destination:
