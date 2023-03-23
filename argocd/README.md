@@ -41,4 +41,4 @@
 
 **6. Progressive Delivery**
 
-- [6.1. Progressive Delivery](./Progressive%20Delivery/Progressive%20Delivery.md)
+- [6.1. Progressive Delivery](./6.%20Progressive%20Delivery/6.1%20Progressive%20Delivery.md)
