@@ -30,3 +30,7 @@
 - [4.1. Reconciliation Loop](4.%20More%20Concepts/4.1.%20Reconciliation%20Loop.md)
 
 - [4.2. Application and ApplicationSet](4.%20More%20Concepts/4.2.%20Application%20and%20ApplicationSet.md)
+
+**5. Declarative Setup**
+
+- [5.1. Using Kubernetes Manifest](./5.%20Declarative%20Setup/5.1.%20Using%20Kubernetes%20Manifest.md)
