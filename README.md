@@ -26,3 +26,5 @@ NOTE: Please install all prerequisites before arriving at the workshop
 - [ ] Kibana (logs in OpenShift)
 - [ ] Server Side Caching
 - [ ] Elixir
+- [X] ArgoCD + GitOps
+
