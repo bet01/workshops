@@ -24,3 +24,9 @@
 - [3.3. Deploying application - CLI](3.%20Application%20Deployment/3.3.%20Deploying%20application%20-%20CLI.md)
 
 - [3.4. Deleting application - CLI](3.%20Application%20Deployment/3.4.%20Deleting%20application%20-%20CLI.md)
+
+**4. More Concepts**
+
+- [4.1. Reconciliation Loop](4.%20More%20Concepts/4.1.%20Reconciliation%20Loop.md)
+
+- [4.2. Application and ApplicationSet](4.%20More%20Concepts/4.2.%20Application%20and%20ApplicationSet.md)
