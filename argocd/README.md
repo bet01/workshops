@@ -38,3 +38,7 @@
 - [5.2. App-of-Apps Pattern](./5.%20Declarative%20Setup/5.2.%20App-of-Apps%20Pattern.md)
 
 - [5.3. Deploying App-of-Apps](./5.%20Declarative%20Setup/5.3.%20Deploying%20App-of-Apps.md)
+
+**6. Progressive Delivery**
+
+- [6.1. Progressive Delivery](./Progressive%20Delivery/Progressive%20Delivery.md)
