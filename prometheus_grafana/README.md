@@ -33,7 +33,7 @@ app.UseHttpMetrics();
 app.UseEndpoints(endpoints =>
 {
     // Enable the /metrics page to export Prometheus metrics.
-    // Open http://localhost:5099/metrics to see the metrics.
+    // Open http://localhost:<port>/metrics to see the metrics.
 
     endpoints.MapMetrics();
 });
@@ -41,7 +41,7 @@ app.UseEndpoints(endpoints =>
 
 and remove `app.UseHttpsRedirection();`
 
-Run your app and navigate to `/metrics` full url should be similar to `http://localhost:5076/metrics`, you should see (truncated):
+Run your app and navigate to `/metrics` full url should be similar to `http://localhost:5999/metrics`, you should see (truncated):
 
 ```
 # HELP http_requests_in_progress The number of requests currently in progress in the ASP.NET Core pipeline. One series without controller/action label values counts all in-progress requests, with separate series existing for each controller-action pair.
