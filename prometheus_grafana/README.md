@@ -167,7 +167,7 @@ services:
     network_mode: host
 ```
 
-Then add another file prometheus.yml and paste in (NOTE: use the port numbers of your app, 5076 was my port locally when running WeatherAPI):
+Then add another file prometheus.yml and paste in (NOTE: use the port numbers of your app, 5999 was my http port locally when running WeatherAPI):
 
 ```
 global:
@@ -178,7 +178,7 @@ scrape_configs:
     scheme: 'http'
     static_configs:
       - targets: [
-        'localhost:5076',
+        'localhost:5999',
       ]
 ```
 
