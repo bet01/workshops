@@ -6,5 +6,5 @@ scrape_configs:
     scheme: 'http'
     static_configs:
       - targets: [
-        'localhost:5076',
+        'host.docker.internal:5999',
       ]
