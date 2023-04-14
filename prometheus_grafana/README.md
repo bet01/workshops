@@ -188,7 +188,7 @@ Then navigate to http://localhost:9090 in your browser and run the query `weathe
 
 Next navigate to Grafana at http://localhost:3000 and login with admin/admin, skip changing password.
 
-Hover over the cog icon for settings, click "Data sources", click "Add data source", select Prometheus and enter http://localhost:9090 into URL, the click "Save & test"
+Hover over the cog icon for settings, click "Data sources", click "Add data source", select Prometheus and enter http://prometheus:9090 into URL, the click "Save & test"
 
 #### Counters and Graphs
 
