@@ -4,6 +4,8 @@
 
 When something goes wrong, how do you know? When something goes right, how do you know it's better? Monitoring tools give us these insights to see problems early and to be able to prove the effectiveness of improvments.
 
+![Bet rate](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/betrate.png)
+
 ## Getting Started
 
 Create a simple boilerplate dotnet API with `dotnet new webapi --name WeatherAPI`
@@ -186,6 +188,8 @@ From the terminal in the same folder as the above file run `docker-compose up -d
 
 Then navigate to http://localhost:9090 in your browser and run the query `weather_request_total` you will then see the value scraped by Prometheus from your app.
 
+![Prometheus](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/prometheus.png)
+
 Next navigate to Grafana at http://localhost:3000 and login with admin/admin, skip changing password.
 
 Hover over the cog icon for settings, click "Data sources", click "Add data source", select Prometheus and enter http://prometheus:9090 into URL, the click "Save & test"
@@ -202,5 +206,5 @@ Add a New Panel, on the top right change the Visualization from "Time series" to
 
 Add a New Panel, on the top right change the Visualization from "Time series" to "Heatmap" and paste in `sum by (le) (increase(weather_request_duration_bucket[1m]))` into the PromQL Query. Click "Apply".
 
-
+![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana.png)
 
