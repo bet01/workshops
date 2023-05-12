@@ -91,6 +91,8 @@ using (var consumer = new ConsumerBuilder<string, string>(_consumerConfig).Build
 
 A topic is a logical group of messages. For example the “bet” topic would contain bets, the “event” topic would contain events.
 
+![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_topics.png)
+
 ## Partitions
 
 A partition allows parallel processing of messages within a topic. If you only have 1 partition you can only process one message at a time. If you have 20 partitions you can process up to 20 messages at a time. This can be split between consumers and threads within a consumer. So if you have 2 consumers each can consume 10 messages at a time in parallel. You will be limited to a maximum of 20 consumers, you cannot have more consumers than partitions as the extra consumers will have no work to do and will sit idle.
