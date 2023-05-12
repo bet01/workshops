@@ -125,5 +125,7 @@ So in our previous consumer group example the two groups could be at different p
 
 `client_transaction_storage_group`: offset could be 1000 (lag of 0)
 
+![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_offsets.png)
+
 ## Kafka Shell Scripts
 Access the Kafka container shell and go to /opt/bitnami/kafka/bin from here type in ls to view all the scripts.
