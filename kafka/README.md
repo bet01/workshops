@@ -113,6 +113,8 @@ If you have 10 consumers in the same consumer group they will share the load of 
 
 For example lets say we are consuming the bet topic, you have one set of consumers that will insert the bet into a bet database table, we create a group called bet_storage_group. Then lets say you have another set of consumers that will insert into the client transaction table in a database, we can create a group called client_transaction_storage_group. This way both groups will receive the same messages.
 
+![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_partitions_consumer_groups.png)
+
 ## Offsets
 
 There will be an offset per topic, partition and consumer group. The offset is how far along the partition in the topic that consumer group is. So if the consumer group has processed and committed the offset for 100 messages the offset should be 100. If there are still another 900 messages in the partition (total 1000) then this is referred to as a lag of 900 messages and is a good metric to see how far behind the consumers are.
