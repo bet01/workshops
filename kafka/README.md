@@ -97,8 +97,10 @@ A topic is a logical group of messages. For example the “bet” topic would co
 
 A partition allows parallel processing of messages within a topic. If you only have 1 partition you can only process one message at a time. If you have 20 partitions you can process up to 20 messages at a time. This can be split between consumers and threads within a consumer. So if you have 2 consumers each can consume 10 messages at a time in parallel. You will be limited to a maximum of 20 consumers, you cannot have more consumers than partitions as the extra consumers will have no work to do and will sit idle.
 
+One consumer handing 3 partitions:
 ![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_partitions_one_consumer.png)
 
+One consumer per partition, 4th consumer has no work to do:
 ![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_partitions_multiple_consumer.png)
 
 Partitions also keep messages in order within that partition. So if you need all messages related to a certain betting event to be processed in order (odds changes for example always need to be in order) then you will set a message key with the event id. Kafka will ensure the same key (event id, therefore event) will always go to the same partition, thus guaranteeing order.
