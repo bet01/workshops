@@ -42,7 +42,8 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
 
-        // Kafka produce!
+        // Kafka produce! - don't do this for production code, use singleton for producer!
+        // Without singleton 1s+ to send, with singleton < 10ms
         using (var producer = new ProducerBuilder<string, string>(_producerConfig).Build())
         {
             string json = JsonConvert.SerializeObject(weather);
