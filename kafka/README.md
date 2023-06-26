@@ -1,5 +1,12 @@
 # Kafka Workshop
 
+## Disclaimer
+
+This is an introductory lab to Kafka, there some advanced concepts not covered which you will need to consider in your production code:
+1. clean architecture, dependency injection, etc.
+2. producer must be a singleton and re-used, it is thread safe
+3. a thread per partition in the consumer
+
 ## What is it?
 
 Kafka is an Event Streaming platform which allows the sending and receiving of messages between applications in a decoupled manner with a very high throughput. If you know Rabbit MQ this won’t be a foreign concept to you. What makes Kafka more attractive is throughput and persistence. You can set Kafka to keep messages for a certain time, defaulting to two weeks, so if an app goes down it can continue from where it left off.
