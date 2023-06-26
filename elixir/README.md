@@ -24,7 +24,7 @@ C# online interactive:      https://dotnetfiddle.net/
 
 ### Pattern matching with function parameters
 
-*C#*
+*C#* does not have pattern matching at a method parameter level, so we need to use some other mechanism, such as a switch statement seen below:
 ```
 using System;
 					
@@ -69,7 +69,7 @@ public class Program
 }
 ```
 
-*Elixir*
+*Elixir* can pattern match at a functino parameter level, removing the need for a case statement
 ```
 defmodule Test do
    
@@ -93,9 +93,7 @@ From these examples you can see how Elixir will automatically match the paramete
 
 ### Switch/Case Statements
 
-In recent years C# has brought in some functional elements, such as pattern matching with switch statements.
-
-*C#*
+In recent years *C#* has brought in some functional elements, such as pattern matching with switch statements.
 ```
 using System;
 					
@@ -154,7 +152,7 @@ public class Program
 }
 ```
 
-*Elixir*
+The *Elixir* version is seen below
 ```
 defmodule ProcessPerson do
 
@@ -200,7 +198,7 @@ ProcessPerson.process(%{
 
 ### Piping
 
-In C# you may have come across this, notice how 3 method calls are wrapped around the person object:
+In *C#* you may have come across this, notice how 3 method calls are wrapped around the person object:
 ```
 using System;
 using System.Text.Json;
@@ -234,7 +232,7 @@ public class Program
 }
 ```
 
-*Elixir*
+In *Elxir*, and many functional languages, we have the pipe operator `|>` which takes the result of the previous function and passes it to the next function as it's first parameter. This gives us a clear and easy to read call chain.
 ```
 defmodule ProcessPerson do
 
@@ -257,4 +255,3 @@ ProcessPerson.process(%{
 })
 ```
 
-In Elxir, and many functional languages, we have the pipe operator `|>` which takes the result of the previous function and passes it to the next function as it's first parameter. This gives us a clear and easy to read call chain.
