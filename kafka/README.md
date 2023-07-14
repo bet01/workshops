@@ -69,7 +69,7 @@ using (var producer = new ProducerBuilder<string, string>(_producerConfig).Build
 
 ### Consumer
 
-With the consumer you would usually have one thread per partition to allow parallel processing of messages but maintaining order per partition.
+With the consumer you would usually have one thread per partition to allow parallel processing of messages while maintaining message order per partition.
 
 Consumer config:
 ```
