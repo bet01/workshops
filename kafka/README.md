@@ -134,7 +134,7 @@ There will be an offset per consumer group, topic and partition combination. The
 So in our previous consumer group example the two groups could be at different places. 
 
 | Consumer Group                     | Topic | Partition | Offset | Lag (1000 messages in total) |
-|------------------------------------------------------------------------------------------------|
+|------------------------------------|-------|-----------|--------|------------------------------|
 | bet_storage_group                  | bet   | 0         | 100    | 900                          |
 | client_transaction_storage_group   | bet   | 0         | 1000   | 0                            |
 
