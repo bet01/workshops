@@ -44,7 +44,7 @@ If your call doesn’t need to be syncrhonous (don’t need to wait for an answe
  
 ### Producer
 
-The producer is thread safe so you can (and MUST!) have it as a singleton and call it from many threads. Re-creating the producer for every call is expensive. The below is just a simple example to get you started.
+The producer is thread safe so you can (and MUST!) have it as a singleton and use it across threads. Re-creating the producer for every call is expensive. The below is just a simple example to get you started.
 
 Producer config:
 ```
