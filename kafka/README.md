@@ -16,7 +16,7 @@ Kafka is an Event Streaming platform which allows the sending and receiving of m
 ![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka-latency-compare.png)
 
 In the above image the message throughputs are Kafka 200K/s, Pulsar 200K/s, RabbitMQ 30K/s
-
+(200K/s == 200MB/s)
 
 |                         | Kafka                 | Pulsar                | RabbitMQ (Mirrored)           |
 |-------------------------|-----------------------|-----------------------|-------------------------------|
