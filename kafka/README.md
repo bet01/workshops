@@ -129,13 +129,14 @@ For example lets say we are consuming the bet topic, you have one set of consume
 
 ## Offsets
 
-There will be an offset per consumer group, topic, partition combination. The offset is how far along the partition in the topic that consumer group is. So if the consumer group has processed and committed the offset for 100 messages the offset should be 100. If there are still another 900 messages in the partition (total 1000) then this is referred to as a lag of 900 messages and is a good metric to see how far behind the consumers are.
+There will be an offset per consumer group, topic and partition combination. The offset is how far along the partition in the topic that consumer group is. So if the consumer group has processed and committed the offset for 100 messages the offset should be 100. If there are still another 900 messages in the partition (total 1000) then this is referred to as a lag of 900 messages and is a good metric to see how far behind the consumers are.
 
 So in our previous consumer group example the two groups could be at different places. 
 
-`bet_storage_group:bet:0`: offset could be 100 (lag of 900)
-
-`client_transaction_storage_group:bet:0`: offset could be 1000 (lag of 0)
+| Consumer Group                     | Topic | Partition | Offset | Lag (1000 messages in total) |
+|------------------------------------------------------------------------------------------------|
+| bet_storage_group                  | bet   | 0         | 100    | 900                          |
+| client_transaction_storage_group   | bet   | 0         | 1000   | 0                            |
 
 ![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_offsets.png)
 
