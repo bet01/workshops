@@ -38,7 +38,7 @@ If your call doesn’t need to be syncrhonous (don’t need to wait for an answe
 
 2. If the Consumer is down it does not affect the Producer, the Producer can carry on sending. In an API setup your API calls will fail and the messages will be lost. Waiting and retrying will be a big overhead for the Sender.
 
-3. The messages in Kafka are persisted so the Consumer can be down for however long you retain messages. Also new consumers can come on and consumer messages as far back as your retaining period.
+3. The messages in Kafka are persisted so the Consumer can be down for however long you retain messages. Also new consumers can come on and consumer messages as far back as your retention period.
 
 ## Source Code (C#)
  
