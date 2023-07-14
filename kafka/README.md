@@ -9,7 +9,7 @@ This is an introductory lab to Kafka, there some advanced concepts not covered w
 
 ## What is it?
 
-Kafka is an Event Streaming platform which allows the sending and receiving of messages between applications in a decoupled manner with a very high throughput. If you know Rabbit MQ this won’t be a foreign concept to you. What makes Kafka more attractive is throughput and persistence. You can set Kafka to keep messages for a certain time, defaulting to two weeks, so if an app goes down it can continue from where it left off.
+Kafka is an Event Streaming platform, which allows the sending and receiving of messages between applications in a decoupled manner with a very high throughput. If you know Rabbit MQ this won’t be a foreign concept to you. What makes Kafka more attractive is throughput and persistence. You can set Kafka to keep messages for a certain time, defaulting to two weeks, so if an app goes down it can continue from where it left off.
 
 ## Throughput
 
