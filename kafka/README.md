@@ -115,7 +115,7 @@ One consumer handing 3 partitions:
 One consumer per partition, 4th consumer has no work to do:
 ![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_partitions_multiple_consumer.png)
 
-Partitions also keep messages in order within that partition. So if you need all messages related to a certain betting event to be processed in order (odds changes for example always need to be in order) then you will set a message key with the event id. Kafka will ensure the same key (event id, therefore event) will always go to the same partition, thus guaranteeing order.
+Messages are kept in order within a partition. So if you need all messages related to a certain betting event to be processed in order (odds changes for example always need to be in order) then you will set a message key with the event id. Kafka will ensure the same key (event id, therefore event) will always go to the same partition, thus guaranteeing order for the odds for that event.
 
 ![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_partitions_order.png)
 
