@@ -67,6 +67,8 @@ using (var producer = new ProducerBuilder<string, string>(_producerConfig).Build
 }
 ```
 
+Run `docker-compose up -d` in the solution folder to setup Kafka on your local machine. Run the producer API and produce at least one message to create the topic. Then run the consumer (console) app.
+
 ### Consumer
 
 With the consumer you would usually have one thread per partition to allow parallel processing of messages while maintaining message order per partition. Note that the following code is blocking, so you will need to use a thread to keep the main thread free.
