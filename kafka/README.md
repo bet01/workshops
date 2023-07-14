@@ -9,7 +9,7 @@ This is an introductory lab to Kafka, there some advanced concepts not covered w
 
 ## What is it?
 
-Kafka is an Event Streaming platform, which allows the sending and receiving of messages between applications in a decoupled manner with a very high throughput. If you know Rabbit MQ this won’t be a foreign concept to you. What makes Kafka more attractive is throughput and persistence. You can set Kafka to keep messages for a certain time, defaulting to two weeks, so if an app goes down it can continue from where it left off.
+Kafka is an Event Streaming platform, which allows the sending and receiving of messages between applications in a decoupled manner with a very high throughput. If you know Rabbit MQ this won’t be a foreign concept to you. What makes Kafka more attractive is throughput and persistence.
 
 ## Throughput
 
@@ -25,6 +25,10 @@ In the above image the message throughputs are Kafka 200K/s, Pulsar 200K/s, Rabb
 | p99 Latency(ms)         | 5 ms (200 MB/s load)  | 25 ms (200 MB/s load) | 1 ms* (reduced 30 MB/s load)  |
 
 *RabbitMQ latencies degrade significantly at throughputs higher than the 30 MB/s. 
+
+## Persistence
+
+By default Kafka will store messages for one week. This can be configured to your needs and resource availability. Persistence allows an app continue from where it left off when there are failures or restarts. It also allows replayability which can be great for testing with live data or recovering to a good state.
 
 ## Better than calling an API?
 
