@@ -133,9 +133,9 @@ There will be an offset per consumer group, topic, partition combination. The of
 
 So in our previous consumer group example the two groups could be at different places. 
 
-`bet_storage_group`: offset could be 100 (lag of 900)
+`bet_storage_group:bet:0`: offset could be 100 (lag of 900)
 
-`client_transaction_storage_group`: offset could be 1000 (lag of 0)
+`client_transaction_storage_group:bet:0`: offset could be 1000 (lag of 0)
 
 ![Kafka latency](https://github.com/bet01/workshops/blob/main/kafka/Images/kafka_offsets.png)
 
