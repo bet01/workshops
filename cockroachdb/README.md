@@ -68,9 +68,19 @@ LIMIT 10;
 
 **_NOTE:_** sequential numbers in indexes are a bad idea unless you use a hash sharded index
 
-### Includes
+CREATE INDEX ix_breed ON dogs(breed);
+
+### Storing
+
+CREATE INDEX ix_name ON dogs(name) STORING (breed);
 
 ### Inverted Indexes
 
+CREATE INVERTED INDEX ix_breed_tricks ON dogs(breed, tricks);
+
+### Hash Sharded Indexes
+
+
 ## Change Feeds
 
+`CREATE CHANGEFEED FOR TABLE <table_name> INTO 'kafka//host:port'`
