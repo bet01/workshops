@@ -20,6 +20,18 @@ What exactly is this doing?
 
 ## Queries
 
+Basics
+
+`SELECT * FROM bet`
+
+`SELECT * FROM bet LIMIT 100;`
+
+```
+SELECT *
+FROM bet b
+INNER JOIN bet_selection bs ON bs.id = b.id
+LIMIT 10;
+```
 
 ### Arrays
 
