@@ -22,6 +22,20 @@ What exactly is this doing?
 
 `docker run --rm -d --name=roach -p 8080:8080 -p 26257:26257 cockroachdb/cockroach:latest start-single-node --insecure`
 
+## Tables
+
+**_NOTE:_** auto incrementing ids are a very bad idea in distributed systems
+
+```
+CREATE TABLE dogs
+(
+    id uuid,
+    name STRING,
+    breed STRING,
+    tricks STRING[]
+);
+```
+
 ## Queries
 
 Basics
@@ -46,23 +60,7 @@ WHERE selections <@ ARRAY[1]
 LIMIT 10;
 ```
 
-
 ### JSON
-
-## Tables
-
-**_NOTE:_** auto incrementing ids are a very bad idea in distributed systems
-
-```
-CREATE TABLE dogs
-(
-    id uuid,
-    name STRING,
-    breed STRING,
-    tricks STRING[]
-);
-```
-
 
 
 
@@ -70,14 +68,9 @@ CREATE TABLE dogs
 
 **_NOTE:_** sequential numbers in indexes are a bad idea unless you use a hash sharded index
 
-
-
 ### Includes
 
 ### Inverted Indexes
 
-
 ## Change Feeds
-
-
 
