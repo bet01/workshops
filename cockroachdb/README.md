@@ -68,15 +68,17 @@ LIMIT 10;
 
 **_NOTE:_** sequential numbers in indexes are a bad idea unless you use a hash sharded index
 
-CREATE INDEX ix_breed ON dogs(breed);
+`CREATE INDEX ix_breed ON dogs(breed);`
 
 ### Storing
 
-CREATE INDEX ix_name ON dogs(name) STORING (breed);
+`CREATE INDEX ix_name ON dogs(name) STORING (breed);`
 
 ### Inverted Indexes
 
-CREATE INVERTED INDEX ix_breed_tricks ON dogs(breed, tricks);
+`CREATE INVERTED INDEX ix_breed_tricks ON dogs(breed, tricks);`
+
+Limitations: only one array/json column per index. Must be the last column in the index.
 
 ### Hash Sharded Indexes
 
@@ -84,3 +86,17 @@ CREATE INVERTED INDEX ix_breed_tricks ON dogs(breed, tricks);
 ## Change Feeds
 
 `CREATE CHANGEFEED FOR TABLE <table_name> INTO 'kafka//host:port'`
+
+## Monitoring
+
+Cockroach DB Dashboard or Grafana
+
+### CPU (Hardware)
+
+### Latency (Overview)
+
+### Heartbeat latency (Distributed Dashboard)
+
+### Index recommendations
+
+
