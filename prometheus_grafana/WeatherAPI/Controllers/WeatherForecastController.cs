@@ -23,8 +23,10 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
+        // Increment the WeatherRequestCount counter
         AppMetrics.WeatherRequestCount.Inc();
 
+        // Measure the duration of the request for the CallDuration histogram
         using (AppMetrics.CallDuration.NewTimer())
         {
             var stopWatch = new Stopwatch();
@@ -38,8 +40,10 @@ public class WeatherForecastController : ControllerBase
             })
             .ToArray();
 
-            Thread.Sleep(150);
+            // Sleep between 0 and 10 seconds to simulate a long running request
+            Thread.Sleep(Random.Shared.Next(0, 10_000));
 
+            // Add the duration of the request to the LastRequestDuration gauge
             AppMetrics.LastRequestDuration.Set(stopWatch.ElapsedMilliseconds);
 
             return data;
