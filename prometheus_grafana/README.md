@@ -209,8 +209,7 @@ Add a New Panel, on the top right change the Visualization from "Time series" to
 
 |                                     |                                     |
 |-------------------------------------|-------------------------------------|
-| ![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge1.png) | 
-![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge2.png) |
+| ![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge1.png) | ![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge2.png) |
 
 #### Histograms as Heatmaps
 
