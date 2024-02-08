@@ -199,7 +199,7 @@ Hover over the cog icon for settings, click "Data sources", click "Add data sour
 
 #### Counters and Graphs
 
-Next hover over the Dashboards icon (four squares), click "New dashboard". Click "Add new panel" switch from "Builder" to "Code" mode and paste in `sum(rate(weather_request_total[1m]) * 60 )` set time range to last 5 minutes, click apply. You can set an auto refresh from the refresh icon, set to 5s. Now execute your API from swagger and see how Grafana shows you the request rate.
+Next hover over the Dashboards icon (four squares), click "New dashboard". Click "Add new panel" switch from "Builder" to "Code" mode and paste in `sum(rate(weather_request_total[1m]) * 60)` set time range to last 5 minutes, click apply. You can set an auto refresh from the refresh icon, set to 5s. Now execute your API from swagger and see how Grafana shows you the request rate.
 
 ![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_graph.png)
 
@@ -207,7 +207,9 @@ Next hover over the Dashboards icon (four squares), click "New dashboard". Click
 
 Add a New Panel, on the top right change the Visualization from "Time series" to "Gauge" and paste in `weather_last_request_duration` into the PromQL Query. Click "Apply".
 
-![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge.png)
+![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge1.png)
+
+![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge2.png)
 
 #### Histograms as Heatmaps
 
