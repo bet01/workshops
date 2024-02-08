@@ -13,12 +13,14 @@ NOTE: Please install all prerequisites before arriving at the workshop
 
 ## Workshops Available
 
-- [ ] Git
 - [X] Docker
-- [ ] Podman
-- [ ] OpenShift
 - [X] Prometheus & Grafana
 - [X] Kafka
+- [X] ArgoCD + GitOps
+- [ ] Migrations
+- [ ] Git
+- [ ] Podman
+- [ ] OpenShift
 - [ ] Migrations
 - [ ] CockroachDB
 - [ ] GitHub & CI
@@ -26,5 +28,3 @@ NOTE: Please install all prerequisites before arriving at the workshop
 - [ ] Kibana (logs in OpenShift)
 - [ ] Server Side Caching
 - [ ] Elixir
-- [X] ArgoCD + GitOps
-

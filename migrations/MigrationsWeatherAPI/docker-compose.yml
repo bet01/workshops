@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  
+  mssql:
+    container_name: mssql
+    # 2019 was crashing on creation of an In-Memory OLTP table
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    hostname: mssql
+    user: root
+    ports:
+      - 1433:1433
+    environment:
+      SA_PASSWORD: "yourStrong(!)Password"
+      ACCEPT_EULA: "Y"
+      # Not sure if necessary
+      MSSQL_PID: "EnterpriseCore"
+    networks:
+      - public
+
+networks:
+  public:
+    driver: bridge
