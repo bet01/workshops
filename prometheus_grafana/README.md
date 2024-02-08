@@ -207,7 +207,7 @@ Next hover over the Dashboards icon (four squares), click "New dashboard". Click
 
 Add a New Panel, on the top right change the Visualization from "Time series" to "Gauge" and paste in `weather_last_request_duration` into the PromQL Query. Click "Apply".
 
-|                                     |                                     |
+
 |-------------------------------------|-------------------------------------|
 | ![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge1.png) | ![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge2.png) |
 
