@@ -2,7 +2,7 @@
 
 ## Why Monitor?
 
-When something goes wrong, how do you know? When something goes right, how do you know it's better? Monitoring tools give us these insights to see problems early and to be able to prove the effectiveness of improvments.
+When something goes wrong, how do you know? When you are working on optimisations, how do you know it's better? Monitoring tools give us these insights to see problems early and to be able to prove the effectiveness of improvements.
 
 ![Bet rate](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/betrate.png)
 
@@ -41,7 +41,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-and remove `app.UseHttpsRedirection();`
+and remove `app.UseHttpsRedirection();` so we don't have to worry about self signed certificates when scraping metrics.
 
 Run your app and navigate to `/metrics` full url should be similar to `http://localhost:5999/metrics`, you should see (truncated):
 
@@ -57,7 +57,7 @@ process_start_time_seconds 1674824115.91
 prometheus_net_metric_instances{metric_type="gauge"} 21
 ```
 
-Next add a AppMetrics.cs file and paste in the following:
+Next add a AppMetrics.cs file and paste in the following (NOTE: using static like this is not recommended, this is to simplify the lab):
 
 ```
 using Prometheus;
@@ -84,8 +84,10 @@ namespace WeatherAPI
 
 Go to the `WeatherForecastController.cs` and replace the contents of the `Get()` method with:
 ```
+// Increment counter by 1
 AppMetrics.WeatherRequestCount.Inc();
 
+// Wrap code to measure in using
 using (AppMetrics.CallDuration.NewTimer())
 {
     var stopWatch = new Stopwatch();
@@ -102,6 +104,7 @@ using (AppMetrics.CallDuration.NewTimer())
     var random = new Random();
     Thread.Sleep(random.Next(100, 1000));
 
+    // Set gauge value
     AppMetrics.LastRequestDuration.Set(stopWatch.ElapsedMilliseconds);
 
     return data;
@@ -198,13 +201,16 @@ Hover over the cog icon for settings, click "Data sources", click "Add data sour
 
 Next hover over the Dashboards icon (four squares), click "New dashboard". Click "Add new panel" switch from "Builder" to "Code" mode and paste in `sum(rate(weather_request_total[1m]) * 60 )` set time range to last 5 minutes, click apply. You can set an auto refresh from the refresh icon, set to 5s. Now execute your API from swagger and see how Grafana shows you the request rate.
 
+![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_graph.png)
+
 #### Gauges
 
 Add a New Panel, on the top right change the Visualization from "Time series" to "Gauge" and paste in `weather_last_request_duration` into the PromQL Query. Click "Apply".
+
+![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_gauge.png)
 
 #### Histograms as Heatmaps
 
 Add a New Panel, on the top right change the Visualization from "Time series" to "Heatmap" and paste in `sum by (le) (increase(weather_request_duration_bucket[1m]))` into the PromQL Query. Click "Apply".
 
-![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana.png)
-
+![Grafana](https://github.com/bet01/workshops/blob/main/prometheus_grafana/Images/grafana_histogram.png)
