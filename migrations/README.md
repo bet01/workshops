@@ -1,37 +1,15 @@
+# Migrations
 
-# MS SQL Container Stuff
+Migrations can be useful to get a developer up and running quickly with a project. When used with local containers running MS SQL (or whichever other DB you like) the developer has their own play area and will not interfere with others. Other benefits are that you can destroy and re-create the database at any time (especially after making a mess). In more mature processes migrations can also be used to apply new database changes to QA & Production environments removing the need for DBA & DevOps involvement.
 
-## Enterprise MS SQL
+## Migration Weather API Sample Project
+
+This is the sample API generated with `dotnet new webapi`. Migrations have been added using FluentMigrator and data access with Dapper. The WeatherForecast table has been setup as Memory Optimised.
+
+## MS SQL Container Information
+
+### Enterprise MS SQL
 https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver16&pivots=cs1-bash
 
-## Linux Memory Tables
+### Linux Memory Tables
 https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-performance-get-started?view=sql-server-ver16
-
-Scripts:
-```
-CREATE DATABASE Weather;
-
-USE Weather;
-
-SELECT d.compatibility_level
-    FROM sys.databases as d
-    WHERE d.name = Db_Name();
-
-ALTER DATABASE Weather 
-SET MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT = ON;
-
-ALTER DATABASE Weather 
-ADD FILEGROUP weather_mod CONTAINS MEMORY_OPTIMIZED_DATA;
-
-ALTER DATABASE Weather ADD FILE (
-    name='weather_mod1', filename='/var/opt/mssql/data/weather_mod1')
-    TO FILEGROUP weather_mod;
-
-CREATE TABLE dbo.ShoppingCart (
-ShoppingCartId INT IDENTITY(1,1) PRIMARY KEY NONCLUSTERED,
-UserId INT NOT NULL INDEX ix_UserId NONCLUSTERED HASH WITH (BUCKET_COUNT=1000000),
-CreatedDate DATETIME2 NOT NULL,
-TotalPrice MONEY
-) WITH (MEMORY_OPTIMIZED=ON);
-
-```

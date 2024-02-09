@@ -17,11 +17,10 @@ NOTE: Please install all prerequisites before arriving at the workshop
 - [X] Prometheus & Grafana
 - [X] Kafka
 - [X] ArgoCD + GitOps
-- [ ] Migrations
+- [X] Migrations
 - [ ] Git
 - [ ] Podman
 - [ ] OpenShift
-- [ ] Migrations
 - [ ] CockroachDB
 - [ ] GitHub & CI
 - [ ] Zipkin
