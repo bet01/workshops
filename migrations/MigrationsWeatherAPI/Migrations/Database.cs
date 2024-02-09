@@ -21,7 +21,19 @@ public class Database
         {
             var records = connection.Query(query, parameters);
             if (!records.Any())
+            {
                 connection.Execute($"CREATE DATABASE {dbName}");
+                connection.Execute(
+                    $@"ALTER DATABASE {dbName} 
+                    SET MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT = ON;");
+                connection.Execute(
+                    $@"ALTER DATABASE {dbName} 
+                    ADD FILEGROUP {dbName}_mod CONTAINS MEMORY_OPTIMIZED_DATA;");
+                connection.Execute(
+                    $@"ALTER DATABASE {dbName} ADD FILE (
+                    name='{dbName}_mod1', filename='/var/opt/mssql/data/{dbName}_mod1')
+                    TO FILEGROUP {dbName}_mod;");
+            }
         }
     }
 }
