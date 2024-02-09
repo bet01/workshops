@@ -1,4 +1,4 @@
-namespace MigrationsWeatherAPI;
+namespace MigrationsWeatherAPI.Models;
 
 public class WeatherForecast
 {
