@@ -15,7 +15,7 @@ public class Migration_202402090702_InitialSeed : Migration
 
         var weatherForecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Date = DateTime.Today.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
@@ -23,13 +23,7 @@ public class Migration_202402090702_InitialSeed : Migration
 
         foreach (var weatherForecast in weatherForecasts)
         {
-            Insert.IntoTable("WeatherForecast").Row(new
-            {
-                Date = "2024-02-09",
-                Summary = "Hot",
-                TemperatureC = 30,
-                TemperatureF = 86
-            });
+            Insert.IntoTable("WeatherForecast").Row(weatherForecast);
         }
     }
 

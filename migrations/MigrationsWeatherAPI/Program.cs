@@ -11,8 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddSingleton<Database>();
 
-SqlMapper.AddTypeHandler(new DapperSqlDateOnlyTypeHandler());
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
