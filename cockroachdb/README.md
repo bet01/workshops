@@ -18,7 +18,7 @@ What exactly is this doing?
 
 `sql`: enter sql console mode
 
-## Run Cockroach DB locally in Docker
+## Run Cockroach DB locally in Docker (Single Node Insecure)
 
 `docker run --rm -d --name=roach -p 8080:8080 -p 26257:26257 cockroachdb/cockroach:latest start-single-node --insecure`
 
@@ -40,14 +40,14 @@ CREATE TABLE dogs
 
 Basics
 
-`SELECT * FROM bet`
+`SELECT * FROM dogs`
 
-`SELECT * FROM bet LIMIT 100;`
+`SELECT * FROM dogs LIMIT 100;`
 
 ```
 SELECT *
-FROM bet b
-INNER JOIN bet_selection bs ON bs.id = b.id
+FROM dogs d
+INNER JOIN breed b ON d.breed = b.name
 LIMIT 10;
 ```
 
@@ -55,8 +55,8 @@ LIMIT 10;
 
 ```
 SELECT *
-FROM bet_selection
-WHERE selections <@ ARRAY[1]
+FROM dogs
+WHERE tricks <@ ARRAY['sit']
 LIMIT 10;
 ```
 
@@ -100,3 +100,10 @@ Cockroach DB Dashboard or Grafana
 ### Index recommendations
 
 
+## Run in Docker Compose (Multi Node Insecure)
+
+Execute in terminal:
+`docker-compose up -d`
+
+Initialise via terminal:
+`docker exec -it roach1 ./cockroach --host=roach1:26357 init --insecure`
