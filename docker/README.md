@@ -25,8 +25,8 @@ NOTE: you may need to use single quotes if bash interprets the strings and compl
 
 You may now connect to the `localhost` MS SQL using the username `sa` and password `yourStrong(!)Password`.
 
-[!NOTE]
-If you cannot connect to the SQL Server container via Azure Data Studio you may need to use 127.0.0.1 instead of localhost. This can happen when localhost maps to ipv6 instead of ipv4.
+> [!NOTE]
+> If you cannot connect to the SQL Server container via Azure Data Studio you may need to use 127.0.0.1 instead of localhost. This can happen when localhost maps to ipv6 instead of ipv4.
 
 ## What about creating our own?
 
