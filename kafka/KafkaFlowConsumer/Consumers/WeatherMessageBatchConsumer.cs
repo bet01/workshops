@@ -10,24 +10,30 @@ public class WeatherMessageBatchConsumer(ILogger<WeatherMessageBatchConsumer> lo
     public Task Invoke(IMessageContext context, MiddlewareDelegate next)
     {
         var batch = context.GetMessagesBatch();
-
         var consumerContext = context.ConsumerContext;
-        string topicPartition = $"topic: {consumerContext.Topic} partition: {consumerContext.Partition}";
-        _logger.LogInformation("Batch received - size: {Count} {topicPartition} min offset: {Offset} max offset: {Offset}",
+        string topic = consumerContext.Topic;
+        int partition = consumerContext.Partition;
+        string batchInfo = string.Format("topic: {0} partition: {1} size: {2} min offset: {3} max offset: {4}",
+            topic,
+            partition,
             batch.Count,
-            topicPartition,
             batch.First().ConsumerContext.Offset,
             batch.Last().ConsumerContext.Offset);
+
+        _logger.LogInformation("Batch received - {batchInfo}", batchInfo);
 
         foreach (var messageContext in batch)
         {
             long offset = messageContext.ConsumerContext.TopicPartitionOffset.Offset;
-            _logger.LogDebug("Message - {topicPartition} offset: {offset} {json}",
-                topicPartition,
+            _logger.LogDebug("Message - topic: {topic} partition: {partition} offset: {offset} json: {json}",
+                topic,
+                partition,
                 offset,
                 JsonSerializer.Serialize(messageContext.Message));
             messageContext.ConsumerContext.Complete();
         }
+
+        _logger.LogInformation("Batch completed - {batchInfo}", batchInfo);
 
         return Task.CompletedTask;
     }
