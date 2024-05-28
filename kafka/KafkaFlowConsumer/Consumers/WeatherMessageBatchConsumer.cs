@@ -3,22 +3,28 @@ using KafkaFlow;
 
 namespace KafkaFlowConsumer;
 
-public class WeatherMessageBatchConsumer : IMessageMiddleware
+public class WeatherMessageBatchConsumer(ILogger<WeatherMessageBatchConsumer> logger) : IMessageMiddleware
 {
+    ILogger<WeatherMessageBatchConsumer> _logger = logger;
+
     public Task Invoke(IMessageContext context, MiddlewareDelegate next)
     {
         var batch = context.GetMessagesBatch();
 
-        Console.WriteLine($"BATCH SIZE: {batch.Count}");
+        var consumerContext = context.ConsumerContext;
+        string topicPartition = $"topic: {consumerContext.Topic} partition: {consumerContext.Partition}";
+        _logger.LogInformation("Batch received - size: {0} {1} min offset: {2} max offset: {3}",
+            batch.Count,
+            topicPartition,
+            batch.First().ConsumerContext.Offset,
+            batch.Last().ConsumerContext.Offset);
 
         foreach (var messageContext in batch)
         {
-            var offset = messageContext.ConsumerContext.TopicPartitionOffset;
-            Console.WriteLine($"MESSAGE FROM BATCH: {offset.Topic} {offset.Partition} {offset.Offset} {JsonSerializer.Serialize(messageContext.Message)}");
+            long offset = messageContext.ConsumerContext.TopicPartitionOffset.Offset;
+            Console.WriteLine($"Message - {topicPartition} offset: {offset} {JsonSerializer.Serialize(messageContext.Message)}");
             messageContext.ConsumerContext.Complete();
         }
-
-        //throw new Exception("OOOPS!");
 
         return Task.CompletedTask;
     }

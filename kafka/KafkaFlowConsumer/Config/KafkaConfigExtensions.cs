@@ -19,7 +19,7 @@ public static class KafkaConfigExtensions
                 .WithAutoOffsetReset(AutoOffsetReset.Earliest)
                 .WithManualMessageCompletion()
                 .WithBufferSize(kafkaConfig.BatchMessageLimit)
-                .WithWorkersCount(1)
+                .WithWorkersCount(10)
                 .AddMiddlewares(middlewares => middlewares
                     .AddSingleTypeDeserializer<WeatherMessage, JsonCoreDeserializer>()
                     .AddBatching(kafkaConfig.BatchMessageLimit, TimeSpan.FromMilliseconds(kafkaConfig.BatchTimeLimit))
