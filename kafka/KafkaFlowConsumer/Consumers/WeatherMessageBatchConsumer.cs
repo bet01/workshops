@@ -13,7 +13,7 @@ public class WeatherMessageBatchConsumer(ILogger<WeatherMessageBatchConsumer> lo
 
         var consumerContext = context.ConsumerContext;
         string topicPartition = $"topic: {consumerContext.Topic} partition: {consumerContext.Partition}";
-        _logger.LogInformation("Batch received - size: {0} {1} min offset: {2} max offset: {3}",
+        _logger.LogInformation("Batch received - size: {Count} {topicPartition} min offset: {Offset} max offset: {Offset}",
             batch.Count,
             topicPartition,
             batch.First().ConsumerContext.Offset,
@@ -22,7 +22,10 @@ public class WeatherMessageBatchConsumer(ILogger<WeatherMessageBatchConsumer> lo
         foreach (var messageContext in batch)
         {
             long offset = messageContext.ConsumerContext.TopicPartitionOffset.Offset;
-            Console.WriteLine($"Message - {topicPartition} offset: {offset} {JsonSerializer.Serialize(messageContext.Message)}");
+            _logger.LogDebug("Message - {topicPartition} offset: {offset} {json}",
+                topicPartition,
+                offset,
+                JsonSerializer.Serialize(messageContext.Message));
             messageContext.ConsumerContext.Complete();
         }
 
