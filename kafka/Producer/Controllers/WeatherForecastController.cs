@@ -31,10 +31,10 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "SendWeatherForecast")]
-    public async Task<string> Get()
+    public async Task<List<string>> Get()
     {
         // Random rubbish data
-        var weather = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        var weatherForecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
@@ -46,11 +46,17 @@ public class WeatherForecastController : ControllerBase
         // Without singleton 1s+ to send, with singleton < 10ms
         using (var producer = new ProducerBuilder<string, string>(_producerConfig).Build())
         {
-            string json = JsonConvert.SerializeObject(weather);
-            var message = new Message<string, string> { Key = DateTime.Now.ToString("yyyyMMddHHmmss"), Value = json };
+            List<string> deliveryResults = new List<string>();
 
-            var deliveryResult = await producer.ProduceAsync("weather", message);
-            return deliveryResult.Status.ToString();
+            foreach (var weatherForecast in weatherForecasts)
+            {
+                string json = JsonConvert.SerializeObject(weatherForecast);
+                var message = new Message<string, string> { Key = DateTime.Now.ToString("yyyyMMddHHmmss"), Value = json };
+                var deliveryResult = await producer.ProduceAsync("weather", message);
+                deliveryResults.Add(deliveryResult.Status.ToString());
+            }
+
+            return deliveryResults;
         }
     }
 }

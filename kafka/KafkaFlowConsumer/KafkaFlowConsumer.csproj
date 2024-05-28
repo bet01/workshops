@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-KafkaFlowConsumer-85926b97-8895-4324-ab3e-d836cd3e8ffb</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KafkaFlow" Version="3.0.8" />
+    <PackageReference Include="KafkaFlow.LogHandler.Microsoft" Version="3.0.8" />
+    <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" Version="3.0.8" />
+    <PackageReference Include="KafkaFlow.Serializer" Version="2.5.1" />
+    <PackageReference Include="KafkaFlow.Serializer.JsonCore" Version="3.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+  </ItemGroup>
+</Project>
