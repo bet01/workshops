@@ -17,8 +17,9 @@ public static class KafkaConfigExtensions
                 .Topic(kafkaConfig.Weather.Topic)
                 .WithGroupId(kafkaConfig.ConsumerGroup)
                 .WithAutoOffsetReset(AutoOffsetReset.Earliest)
+                .WithManualMessageCompletion()
                 .WithBufferSize(kafkaConfig.BatchMessageLimit)
-                .WithWorkersCount(10)
+                .WithWorkersCount(1)
                 .AddMiddlewares(middlewares => middlewares
                     .AddSingleTypeDeserializer<WeatherMessage, JsonCoreDeserializer>()
                     .AddBatching(kafkaConfig.BatchMessageLimit, TimeSpan.FromMilliseconds(kafkaConfig.BatchTimeLimit))
