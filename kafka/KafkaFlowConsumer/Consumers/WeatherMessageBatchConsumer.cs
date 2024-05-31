@@ -17,8 +17,11 @@ public class WeatherMessageBatchConsumer(ILogger<WeatherMessageBatchConsumer> lo
         foreach (var message in batch)
         {
             _logger.LogDebug("Message - {info}, workerId: {workerId}", LogHelper.MessageDetails(message), message.ConsumerContext.WorkerId);
-            message.ConsumerContext.Complete();
+            //message.ConsumerContext.Complete();
         }
+
+        //batch.Last().ConsumerContext.Complete();
+        batch.First().ConsumerContext.Complete();
 
         _logger.LogInformation("Batch completed - {batchInfo}", batchInfo);
 

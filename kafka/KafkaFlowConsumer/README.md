@@ -22,7 +22,7 @@ Done by using Workers
 ### Process messages in order as per the guaranteed order per partition
 Done by using `.WithWorkerDistributionStrategy<PartitionKeyDistributionStrategy>()`
 
-> **_NOTE:_**  ByteSum is the default strategy. This maintains order per message key not per partition. This may actually be OK but it depends on how the offset commits are done. This is because ByteSum can process messages out of order per partition, but in order per message key, so you could complete offset 2 before offset 1, but how would KafkaFlow handle this if offset 2 completes but offset 1 fails? The main thing is we do not want to skip/lose messages!
+> **_NOTE:_**  ByteSum is the default strategy. This maintains order per message key not per partition. This may actually be OK but it depends on how the offset commits are done. This is because ByteSum can process messages out of order per partition, but in order per message key, so you could complete offset 2 before offset 1, but how would KafkaFlow handle this if offset 2 completes but offset 1 fails? The main thing is we do not want to skip/lose messages! It does appear that KafkaFlow ensures the lower offsets are completed first before committing to Kafka. For example if 10 messages come in with offsets 1 to 10 and you complete 1, 2, 3, 4 & 7... it won't commit 7 but will commit up to 4 as you didn't complete 5 & 6.
 
 ### Only commit (complete) messages once processed
 
@@ -43,6 +43,6 @@ As a batch is received and then completed the following key information is logge
 - max offset of the batch
 - debug logging can be enabled to log the contents of messages (need to check for performance with high volumes)
 
-### Resume on re-balance/exception
+### Resume on re-balance/exception or failed message
 TODO
 
