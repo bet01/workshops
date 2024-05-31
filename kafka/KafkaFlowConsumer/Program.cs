@@ -7,7 +7,9 @@ var builder = Host.CreateApplicationBuilder(args);
 
 // Configure Kafka with MassTransit
 var kafkaConfig = builder.Configuration.GetSection("Kafka").Get<KafkaConfig>() ?? throw new Exception("Kafka config section not found");
-builder.Services.AddKafka(kafka => kafka.ConfigureKafka(kafkaConfig));
+//builder.Services.AddKafka(kafka => kafka.ConfigureKafkaPartitionKeyStrategy(kafkaConfig));
+//builder.Services.AddKafka(kafka => kafka.ConfigureKafkaErrorRestart(kafkaConfig));
+builder.Services.AddKafka(kafka => kafka.ConfigureKafkaManualCompleteRetryIncomplete(kafkaConfig));
 
 // Configure Json to convert between PascalCase and camelCase
 var jsonOptions = new JsonSerializerOptions

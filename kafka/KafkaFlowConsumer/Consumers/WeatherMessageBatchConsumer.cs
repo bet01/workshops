@@ -34,8 +34,6 @@ public class WeatherMessageBatchConsumer(ILogger<WeatherMessageBatchConsumer> lo
                     message.ConsumerContext.Offset);
                 }
             } while (!success);
-
-            message.ConsumerContext.Complete();
         }
 
         logger.LogInformation("Batch completed - {batchInfo}", batchInfo);

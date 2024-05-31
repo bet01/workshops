@@ -8,7 +8,7 @@ namespace KafkaFlowConsumer;
 
 public static class KafkaConfigExtensions
 {
-    public static void ConfigureKafka(this IKafkaConfigurationBuilder x, KafkaConfig kafkaConfig)
+    public static void ConfigureKafkaPartitionKeyStrategyManualComplete(this IKafkaConfigurationBuilder x, KafkaConfig kafkaConfig)
     {
         x
         .UseMicrosoftLog()
@@ -25,7 +25,6 @@ public static class KafkaConfigExtensions
                 .WithManualMessageCompletion()
                 // How many messages to buffer
                 .WithBufferSize(kafkaConfig.BufferSize)
-                // NOTE!!! if you have more workers than partitions you end up with messages out of order - MAY NOT BE 100% true
                 .WithWorkersCount(kafkaConfig.Weather.Workers)
                 .AddMiddlewares(middlewares => middlewares
                     // All messages in this topic are assumed to be of the same type
@@ -34,6 +33,59 @@ public static class KafkaConfigExtensions
                     .AddBatching(kafkaConfig.BatchMessageLimit, TimeSpan.FromMilliseconds(kafkaConfig.BatchTimeLimit))
                     // Batch message handler
                     .Add<WeatherMessageBatchConsumer>()
+                )
+            )
+        );
+    }
+
+    public static void ConfigureKafkaErrorRestart(this IKafkaConfigurationBuilder x, KafkaConfig kafkaConfig)
+    {
+        x
+        .UseMicrosoftLog()
+        .AddCluster(cluster => cluster
+            .WithBrokers([kafkaConfig.Host])
+            .AddConsumer(consumer => consumer
+                .Topic(kafkaConfig.Weather.Topic)
+                .WithGroupId(kafkaConfig.ConsumerGroup)
+                // New consumers will start at the beginning
+                .WithAutoOffsetReset(AutoOffsetReset.Earliest)
+                // How many messages to buffer
+                .WithBufferSize(kafkaConfig.BufferSize)
+                .WithWorkersCount(kafkaConfig.Weather.Workers)
+                .AddMiddlewares(middlewares => middlewares
+                    // All messages in this topic are assumed to be of the same type
+                    .AddSingleTypeDeserializer<WeatherMessage, JsonCoreDeserializer>()
+                    // Batch messages for batch processing
+                    .AddBatching(kafkaConfig.BatchMessageLimit, TimeSpan.FromMilliseconds(kafkaConfig.BatchTimeLimit))
+                    // Handle consumer errors
+                    .Add<HandleBatchConsumerError>()
+                    // Batch message handler
+                    .Add<WeatherMessageBatchConsumer>()
+                )
+            )
+        );
+    }
+
+    public static void ConfigureKafkaManualCompleteRetryIncomplete(this IKafkaConfigurationBuilder x, KafkaConfig kafkaConfig)
+    {
+        x
+        .UseMicrosoftLog()
+        .AddCluster(cluster => cluster
+            .WithBrokers([kafkaConfig.Host])
+            .AddConsumer(consumer => consumer
+                .Topic(kafkaConfig.Weather.Topic)
+                .WithGroupId(kafkaConfig.ConsumerGroup)
+                .WithAutoOffsetReset(AutoOffsetReset.Earliest)
+                .WithManualMessageCompletion()
+                .WithBufferSize(kafkaConfig.BufferSize)
+                .WithWorkersCount((context, resolver) => 
+                    Task.FromResult(context.AssignedTopicsPartitions.First().Partitions.Count()),
+                    TimeSpan.FromMinutes(15))
+                .AddMiddlewares(middlewares => middlewares
+                    .AddSingleTypeDeserializer<WeatherMessage, JsonCoreDeserializer>()
+                    .AddBatching(kafkaConfig.BatchMessageLimit, TimeSpan.FromMilliseconds(kafkaConfig.BatchTimeLimit))
+                    .Add<HandleBatchConsumerError>()
+                    .Add<WeatherMessageBatchManualConsumer>()
                 )
             )
         );
