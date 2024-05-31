@@ -44,5 +44,12 @@ As a batch is received and then completed the following key information is logge
 - debug logging can be enabled to log the contents of messages (need to check for performance with high volumes)
 
 ### Resume on re-balance/exception or failed message
-TODO
+
+We can do two things here:
+1. Have a try block in the consumer code and decide what we want to do. Log it and move on, or initifite loop until it passes, etc.
+2. We can try use middleware similar to the pause example and keep going back to the earliest message which isn't complete:
+references:
+https://farfetch.github.io/kafkaflow/docs/getting-started/samples/#pause-consumer-on-error
+https://github.com/Farfetch/kafkaflow/tree/master/samples/KafkaFlow.Sample.PauseConsumerOnError
+
 
