@@ -1,6 +1,7 @@
 using KafkaFlowConsumer;
 using KafkaFlow;
 using System.Text.Json;
+using Serilog;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -14,6 +15,13 @@ var jsonOptions = new JsonSerializerOptions
     PropertyNameCaseInsensitive = true
 };
 builder.Services.AddSingleton(jsonOptions);
+
+// Configure SeriLog
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog();
 
 // Build app host
 var host = builder.Build();

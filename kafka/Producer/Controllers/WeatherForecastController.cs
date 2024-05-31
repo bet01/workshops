@@ -34,7 +34,7 @@ public class WeatherForecastController : ControllerBase
     public async Task<List<string>> Get()
     {
         // Random rubbish data
-        var weatherForecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        var weatherForecasts = Enumerable.Range(1, 100).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
@@ -51,7 +51,7 @@ public class WeatherForecastController : ControllerBase
             foreach (var weatherForecast in weatherForecasts)
             {
                 string json = JsonConvert.SerializeObject(weatherForecast);
-                var message = new Message<string, string> { Key = DateTime.Now.ToString("yyyyMMddHHmmss"), Value = json };
+                var message = new Message<string, string> { Key = Guid.NewGuid().ToString(), Value = json };
                 var deliveryResult = await producer.ProduceAsync("weather", message);
                 deliveryResults.Add(deliveryResult.Status.ToString());
             }

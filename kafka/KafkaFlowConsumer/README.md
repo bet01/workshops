@@ -10,18 +10,17 @@ Repo: https://github.com/Farfetch/kafkaflow
 
 While KafkaFlow makes things simpler, we need to configure it to our needs and some of this configuration is not clearly documented. There are our goals:
 
-[ ] - Parallel processing of partitions
-[ ] - Process messages in order as per the guaranteed order per partition
+[X] - Parallel processing of partitions
+[X] - Process messages in order as per the guaranteed order per partition
 [X] - Only commit (complete) messages once processed, never skip messages
 [X] - Extensive & clear logging
 [ ] - Resume on re-balance/exception
 
-
 ### Parallel processing of partitions
-TODO
+Done by using Workers
 
 ### Process messages in order as per the guaranteed order per partition
-TODO 
+Done by using `.WithWorkerDistributionStrategy<PartitionKeyDistributionStrategy>()` 
 
 ### Only commit (complete) messages once processed
 
@@ -41,7 +40,6 @@ As a batch is received and then completed the following key information is logge
 - min offset of the batch
 - max offset of the batch
 - debug logging can be enabled to log the contents of messages (need to check for performance with high volumes)
-
 
 ### Resume on re-balance/exception
 TODO
