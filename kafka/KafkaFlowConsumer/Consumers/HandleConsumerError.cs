@@ -19,15 +19,12 @@ public class HandleBatchConsumerError(IConsumerAccessor consumerAccessor, ILogHa
                 {
                     context.ConsumerContext.ConsumerName,
                     context.ConsumerContext.Topic,
-                    context.ConsumerContext.Partition,
-                    MinOffset = batch.First().ConsumerContext.Offset,
-                    MaxOffset = batch.Last().ConsumerContext.Offset
+                    Details = LogHelper.MessageBatchInfoMixed(batch)
                 });
 
             var consumer = consumerAccessor[context.ConsumerContext.ConsumerName];
-            // !!! NOT FUNCTIONING AS EXPECTED eventually loses partitions completely !!!
-            // Restart the consumer on error so we do not skip messages. Partial offset commit may still work. Is there a better way of doing this?
-            await consumer.RestartAsync();
+            // Pause the consumer on error
+            consumer.Pause(consumer.Assignment);
 
             logHandler.Warning("Consumer restarted", context.ConsumerContext.ConsumerName);
         }

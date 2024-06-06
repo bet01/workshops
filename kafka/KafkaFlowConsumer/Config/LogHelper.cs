@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 using KafkaFlow;
 
@@ -5,7 +6,19 @@ namespace KafkaFlowConsumer;
 
 public class LogHelper
 {
-    public static string MessageBatchInfo(IReadOnlyCollection<IMessageContext> batch)
+    public static string MessageBatchInfoMixed(IReadOnlyCollection<IMessageContext> batch)
+    {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendFormat("Count: {0} - [Partiiton, Offset]", batch.Count);
+        _ = batch.Aggregate(
+                            stringBuilder,
+                            (sb, x) => sb.AppendFormat(", [{0}, {1}]", x.ConsumerContext.Partition, x.ConsumerContext.Offset)
+                        );
+
+        return stringBuilder.ToString();
+    }
+
+    public static string MessageBatchInfoSamePartition(IReadOnlyCollection<IMessageContext> batch)
     {
         var first = batch.First().ConsumerContext;
         var last = batch.Last().ConsumerContext;
