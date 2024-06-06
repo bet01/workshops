@@ -16,8 +16,10 @@ public static class KafkaConfigExtensions
             .WithBrokers([kafkaConfig.Host])
             .CreateTopicIfNotExists(kafkaConfig.Weather.Topic, 3, 1)
             .AddConsumer(consumer => consumer
-                .Topic(kafkaConfig.Weather.Topic)                
+                .Topic(kafkaConfig.Weather.Topic)
                 .WithGroupId(kafkaConfig.ConsumerGroup)
+                // Manually mark messages as complete
+                .WithManualMessageCompletion()
                 .WithBufferSize(kafkaConfig.BufferSize)
                 .WithWorkersCount(kafkaConfig.Weather.Workers)
                 .AddMiddlewares(middlewares => middlewares
