@@ -57,11 +57,6 @@ public async Task LongRunningIO()
 
 ### Example App Result
 
-Two key observations from the logs:
-
-- All the asynchronous tasks were initiated from the same thread.
-- Some asynchronous tasks completed on the same thread as others. (Note: This is a simplified version of the logs; we ran around 20 tasks to observe this behavior.)
-
 ```
 Task 0 started asynchronously (Thread ID: 1)
 Task 1 started asynchronously (Thread ID: 1)
@@ -76,6 +71,11 @@ Task 3 completed asynchronously (Thread ID: 14)
 Task 4 completed asynchronously (Thread ID: 12)
 Task 5 completed asynchronously (Thread ID: 5)
 ```
+
+Two key observations from the logs:
+
+- All the asynchronous tasks were initiated from the same thread.
+- Some asynchronous tasks completed on the same thread as others. (Note: This is a simplified version of the logs; we ran around 20 tasks to observe this behavior.)
 
 ## Conclusion
 
