@@ -16,6 +16,9 @@ var thread = new Thread(() => Thread.Sleep(1000));
 thread.Start();
 ```
 
+> [!NOTE]
+> Mutlithreading can be tricky especially when you get into production. It is only recommended to use them in very specific use cases and where someone experienced with multithreading has reviewed the implementation.
+
 ### Example App Result
 
 ```
