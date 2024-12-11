@@ -4,12 +4,19 @@ using DotnetAsyncThreads.Examples;
 
 namespace DotnetAsyncThreads;
 
+[CategoriesColumn]
 [MemoryDiagnoser]
 public class BenchmarkThreadsAsync
 {
-    [Benchmark]
-    public void ThreadsBenchmark() => ThreadExample.Run();
+    [BenchmarkCategory("I/O"), Benchmark]
+    public void ThreadsIOBenchmark() => ThreadExample.RunIO();
 
-    [Benchmark]
-    public async Task AsyncBenchmark() => await AsyncExample.RunAsync();
+    [BenchmarkCategory("I/O"), Benchmark]
+    public async Task AsyncIOBenchmark() => await AsyncExample.RunIOAsync();
+
+    [BenchmarkCategory("CPU"), Benchmark]
+    public void ThreadsCPUBenchmark() => ThreadExample.RunCPU();
+
+    [BenchmarkCategory("CPU"), Benchmark]
+    public async Task AsyncCPUBenchmark() => await AsyncExample.RunCPUAsync();
 }

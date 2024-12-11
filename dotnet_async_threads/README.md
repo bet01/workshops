@@ -88,7 +88,16 @@ While the examples in this lab are basic, the key concepts they aim to demonstra
 
 ### Benchmarks
 
-| Method           | Mean     | Error   | StdDev  | Allocated |
-|----------------- |---------:|--------:|--------:|----------:|
-| ThreadsBenchmark | 505.8 ms | 2.37 ms | 2.10 ms |  32.82 KB |
-| AsyncBenchmark   | 501.1 ms | 0.40 ms | 0.38 ms |   13.7 KB |
+I/O Benchmarks
+| Method              | Categories | Mean       | Error    | StdDev   | Gen0      | Gen1      | Gen2      | Allocated   |
+|-------------------- |----------- |-----------:|---------:|---------:|----------:|----------:|----------:|------------:|
+| ThreadsIOBenchmark  | I/O        |   503.4 ms |  0.64 ms |  0.53 ms |         - |         - |         - |    33.05 KB |
+| AsyncIOBenchmark    | I/O        |   501.2 ms |  0.38 ms |  0.34 ms |         - |         - |         - |    15.04 KB |
+
+CPU Benchmarks
+| Method              | Categories | Mean       | Error    | StdDev   | Gen0      | Gen1      | Gen2      | Allocated   |
+|-------------------- |----------- |-----------:|---------:|---------:|----------:|----------:|----------:|------------:|
+| ThreadsCPUBenchmark | CPU        |   515.2 ms |  0.85 ms |  0.80 ms | 1000.0000 | 1000.0000 | 1000.0000 |  12511.3 KB |
+| AsyncCPUBenchmark   | CPU        | 2,457.6 ms | 18.51 ms | 15.45 ms | 1000.0000 | 1000.0000 | 1000.0000 | 12504.05 KB |
+
+*AsyncCPUBenchmark is literally running sequentially as you cannot await CPU intensive tasks. `Task.Run` will start a thread therefall would fall under multithreading not async.

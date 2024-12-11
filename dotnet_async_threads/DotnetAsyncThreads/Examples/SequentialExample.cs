@@ -8,7 +8,7 @@ public static class SequentialExample
     {
         for (int i = 0; i < 3; i++)
         {
-            LongRunningCode.LongRunningOperation(i);
+            LongRunningCode.LongRunningIOOperation(i);
         }
     }
 }
