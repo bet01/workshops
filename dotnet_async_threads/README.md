@@ -118,6 +118,7 @@ Two key observations from the logs:
 - Forgetting `await`.
 - Mixing async with blocking calls like `.Result` or `.Wait()`.
 - Excessive use of `Task.Run`.
+- Using `Task.Run` for I/O.
 
 ## Advanced
 
