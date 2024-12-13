@@ -1,8 +1,9 @@
-# Multithreading vs Async Programming
+Multithreading vs Async Programming
+===================================
 
 It's important to understand the distinction between asynchronous programming and multithreading in .NET.
 
-## Multithreading
+# Multithreading
 
 When you create threads explicitly (e.g., using Thread), a new thread is allocated each time. Creating threads has significant overhead because each thread requires memory for its stack and incurs additional scheduling overhead. This can quickly lead to resource contention if too many threads are created.
 
@@ -19,7 +20,7 @@ thread.Start();
 > [!NOTE]
 > Mutlithreading can be tricky especially when you get into production. It is only recommended to use them in very specific use cases and where someone experienced with multithreading has reviewed the implementation.
 
-### Example App Result
+## Example App Result
 
 ```
 Task 4 started (Thread ID: 8)
@@ -36,7 +37,7 @@ Task 1 completed (Thread ID: 5)
 
 Notice how each Task started on it's own thread and completed on the same thread.
 
-## Async
+# Async
 
 When using asynchronous programming in .NET (or most environments), you are not necessarily creating new threads. A good analogy is JavaScript, which supports asynchronous programming but operates in a single-threaded environment. Asynchronous programming (async) is not the same as multithreading.
 
@@ -80,13 +81,29 @@ Two key observations from the logs:
 - All the asynchronous tasks were initiated from the same thread.
 - Some asynchronous tasks completed on the same thread as others. (Note: This is a simplified version of the logs; we ran around 20 tasks to observe this behavior.)
 
-## Conclusion
+## Common Pitfalls
+
+- Forgetting `await`.
+- Mixing async with blocking calls like `.Result` or `.Wait()`.
+- Excessive use of `Task.Run`.
+
+## Advanced
+
+- Cancellation Tokens
+```
+await Task.Delay(1000, cancellationToken);
+```
+Cancellation tokens allow asynchronous tasks to be stopped early. For example, if a user cancels an API request you want to cancel all the asynchronous tasks otherwise they will continue running and waste resources. In an API getting high load this could add up enough to cause issues in production.
+
+
+
+# Conclusion
 
 While the examples in this lab are basic, the key concepts they aim to demonstrate are:
 - For CPU-bound operations, use threads to enable concurrent execution and prevent blocking the main thread.
 - For I/O-bound operations, use asynchronous programming to avoid blocking threads and achieve efficient concurrency. Async programming is particularly efficient because it can use fewer threads—or even a single thread—by releasing threads back to the thread pool while waiting for I/O operations to complete.
 
-### Benchmarks
+# Benchmarks
 
 I/O Benchmarks
 | Method              | Categories | Mean       | Error    | StdDev   | Gen0      | Gen1      | Gen2      | Allocated   |
