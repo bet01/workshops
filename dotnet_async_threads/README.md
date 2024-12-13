@@ -49,14 +49,24 @@ Notice how each Task started on it's own thread and completed on the same thread
 
 - Parallel.For
 
-```
+Runs each iteration in a Thread in parallel and provides and index `i` in this example:
 
+```C#
+Parallel.For(0, numberOfIterations, i =>
+{
+    PerformWork(i);
+});
 ```
 
 - Parallel.ForEach
 
-```
+Runs each iteration in a Thread in parallel.
 
+```C#
+Parallel.ForEach(numbers, number =>
+{
+    PerformWork(number);
+});
 ```
 
 # Async
