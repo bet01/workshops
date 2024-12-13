@@ -149,10 +149,12 @@ await Task.WhenAny([task1, task2, task3]);
 ```
 
 ### Cancellation Tokens
+
+Cancellation tokens allow asynchronous tasks to be stopped early. For example, if a user cancels an API request you want to cancel all the asynchronous tasks otherwise they will continue running and waste resources. In an API getting high load this could add up enough to cause issues in production.
+
 ```
 await Task.Delay(1000, cancellationToken);
 ```
-Cancellation tokens allow asynchronous tasks to be stopped early. For example, if a user cancels an API request you want to cancel all the asynchronous tasks otherwise they will continue running and waste resources. In an API getting high load this could add up enough to cause issues in production.
 
 ### Synchronization Context
 
