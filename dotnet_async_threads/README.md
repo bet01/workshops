@@ -37,6 +37,28 @@ Task 1 completed (Thread ID: 5)
 
 Notice how each Task started on it's own thread and completed on the same thread.
 
+## Common Pitfalls
+
+- Deadlocks
+- Race conditions
+- Over-subscription of threads.
+
+## Advanced
+
+### Task Parallel Library (TPL)
+
+- Parallel.For
+
+```
+
+```
+
+- Parallel.ForEach
+
+```
+
+```
+
 # Async
 
 When using asynchronous programming in .NET (or most environments), you are not necessarily creating new threads. A good analogy is JavaScript, which supports asynchronous programming but operates in a single-threaded environment. Asynchronous programming (async) is not the same as multithreading.
@@ -89,6 +111,32 @@ Two key observations from the logs:
 
 ## Advanced
 
+### Async Helpers
+
+- Task.WhenAll
+
+Waits for all of the tasks to finish.
+
+```C#
+var task1 = DoTask1Async();
+var task2 = DoTask2Async();
+var task3 = DoTask3Async();
+
+await Task.WhenAll([task1, task2, task3]);
+```
+
+- Task.WhenAny
+
+Waits for any task to finish. Can be useful if you want to run more tasks as soon as one finishes.
+
+```C#
+var task1 = DoTask1Async();
+var task2 = DoTask2Async();
+var task3 = DoTask3Async();
+
+await Task.WhenAny([task1, task2, task3]);
+```
+
 ### Cancellation Tokens
 ```
 await Task.Delay(1000, cancellationToken);
@@ -97,7 +145,12 @@ Cancellation tokens allow asynchronous tasks to be stopped early. For example, i
 
 ### Synchronization Context
 
+The `SynchronizationContext` ensures that after awaiting a task, the code following the `await` resumes on the original thread or execution context. This is particularly useful in UI applications, where it ensures the continuation code runs on the UI thread, allowing safe updates to the UI. In scenarios where thread affinity is not required (e.g., non-UI or background operations), you can use `ConfigureAwait(false)` to skip capturing the `SynchronizationContext`, reducing overhead and improving performance.
 
+### Other
+
+New async features are often being added, you can do some research on Async Streams and other more advanced features.
+ 
 # Conclusion
 
 While the examples in this lab are basic, the key concepts they aim to demonstrate are:
