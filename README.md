@@ -18,6 +18,7 @@ NOTE: Please install all prerequisites before arriving at the workshop
 - [X] Kafka
 - [X] ArgoCD + GitOps
 - [X] Migrations
+- [X] Dotnet Async vs Threads
 - [ ] Git
 - [ ] Podman
 - [ ] OpenShift
