@@ -35,7 +35,7 @@ public static class LongRunningCode
 
         // CPU intensive operation
         // NOTE! There is no await for CPU intensive code without using Task.Run which then would make this example Multithreading.
-        // So this example is effectivelt sequential as there is no await or thread.
+        // So this example is effectively sequential as there is no await or thread.
         CalculateMandelbrotSet();
 
         Console.WriteLine($"CPU Task {id} completed asynchronously (Thread ID: {Environment.CurrentManagedThreadId})");
