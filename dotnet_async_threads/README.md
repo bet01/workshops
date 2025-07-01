@@ -162,7 +162,10 @@ The `SynchronizationContext` ensures that after awaiting a task, the code follow
 
 ### Other
 
-New async features are often being added, you can do some research on Async Streams and other more advanced features.
+New async features are often being added, you can do some research on: 
+- Async Streams 
+- Parallel.ForEachAsync
+- and other more advanced features.
  
 # Conclusion
 
